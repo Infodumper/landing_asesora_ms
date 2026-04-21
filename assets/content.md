@@ -66,12 +66,12 @@ Texto: Soy <strong>Mercedes Saucedo</strong>, asesora de imagen y cosmiatra prof
 
 ## about_text2
 Indicación: Párrafo 2 de Sobre Mí.
-Texto: Creo profundamente que cuando una mujer se siente bien consigo misma, transforma la manera en que se ve, se siente y se muestra al mundo.
+Texto: Creo profundamente que cuando una mujer se siente bien consigo misma, transforma la manera en que se ve, se siente y se muestra al mundo. Por eso trabajo para ayudarte a descubrir, cuidar y potenciar tu imagen, desde un lugar real, cercano y pensado para vos.
 
 
 ## about_text3
 Indicación: Párrafo 3 de Sobre Mí.
-Texto: Por eso trabajo para ayudarte a descubrir, cuidar y potenciar tu imagen, desde un lugar real, cercano y pensado para vos.Belleza, estilo y bienestar se unen para que puedas conectar con tu esencia, desplegar tu potencial y mostrar todo lo valioso que hay en vos.
+Texto: Belleza, estilo y bienestar se unen para que puedas conectar con tu esencia, desplegar tu potencial y mostrar todo lo valioso que hay en vos. También ayudo a quienes desean emprender y crecer de la mano de Perla Negra, compartiendo guía y una oportunidad real de desarrollo.
 
 
 
