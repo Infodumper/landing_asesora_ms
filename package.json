@@ -1,0 +1,28 @@
+{
+  "name": "landing-gestion-sb",
+  "version": "1.0.0",
+  "description": "MS Belleza - Mercedes Saucedo Landing Page",
+  "scripts": {
+    "dev": "npx http-server -p 3000",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infodumper/landing_gestion_sb.git"
+  },
+  "keywords": [
+    "landing",
+    "beauty",
+    "consultora"
+  ],
+  "author": "Mercedes Saucedo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Infodumper/landing_gestion_sb/issues"
+  },
+  "homepage": "https://github.com/Infodumper/landing_gestion_sb#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
+    "googleapis": "^171.4.0"
+  }
+}

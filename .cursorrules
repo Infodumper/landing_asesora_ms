@@ -1,0 +1,32 @@
+# Reglas de Proyecto: Landing Gestion SB
+
+Eres un ingeniero senior encargado del mantenimiento y evolución de la landing page de "Tu Mejor Consultora". Este proyecto sigue los estándares de la arquitectura "Gestion SB".
+
+## 1. Principios de Diseño (UI/UX)
+- **Framework**: Tailwind CSS (via CDN con config extendida en el HTML).
+- **Estética**: Premium, minimalista, con toques de "Glassmorphism".
+- **Tokens de Color**:
+  - `primary`: #00a876 (Verde Esmeralda)
+  - `secondary`: #d4af37 (Dorado Consultora)
+  - `brandText`: #064e3b
+- **Componentes (Regla de las "Subplacas")**:
+  - Todo listado de productos debe estar en tarjetas blancas (`bg-white`), bordes redondeados (`rounded-[1.5rem]`), sombra suave (`shadow-sm`) y hover sutil.
+- **Micro-animaciones**: Usar transiciones suaves (`transition-all`, `duration-300`).
+
+## 2. Estándares de Código
+- **Idioma**: La interfaz de usuario, comentarios y documentación interna DEBEN estar en **Español**.
+- **Serverless (Vercel)**: Lógica dinámica únicamente en `/api/*.js`. No mezclar lógica de servidor en el HTML.
+- **Integración con Drive**: Los catálogos se gestionan vía API. No crear carpetas locales para PDFs si pueden ser servidos desde Drive.
+
+## 3. Workflows Obligatorios
+- **Modificación de UI**: Antes de cambiar estilos, verificar `styles/colores.css` para mantener la paleta global.
+- **Nuevas Funciones**: Registrar cualquier nueva "Skill" en `.agent/skills_registry.md`.
+- **Despliegue**: Asegurar que las variables de entorno estén documentadas en `.env.example`.
+
+## 4. SEO y Performance
+- Mantener un solo `<h1>` por página.
+- Imágenes con `loading="lazy"` excepto las del Hero.
+- Validar accesibilidad (etiquetas `aria-*`, roles de navegación).
+
+---
+© 2026 Kaizuna - Gestion SB Standard.

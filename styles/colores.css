@@ -1,0 +1,38 @@
+/* colores.css — Tokens de Diseño Global · MS Belleza */
+:root {
+    /* ─── Paleta de Marca ────────────────────────── */
+    --primary: #BE185D;       /* Rose 700 */
+    --secondary: #FB7185;     /* Rose 400 */
+    --brand-text: #1F2A37;    /* Oscuro */
+    --brand-subtext: #4B5563; /* Gris */
+
+    /* ─── Iconografía ────────────────────────────── */
+    --icons-primary: #FB7185; /* Rosa Suave */
+    
+    /* ─── Fondos y Superficies ───────────────────── */
+    --bg-white: #FAF9F6;      /* Blanco Hueso */
+    --bg-gray: #E5E7EB;       /* Gris Suave */
+
+    /* ─── Sombras ────────────────────────────────── */
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* ─── Bordes y Radios ────────────────────────── */
+    --radius-full: 9999px;
+    --radius-placa: 2.5rem;
+    --radius-subplaca: 1.5rem;
+
+    /* ─── Tipografía ─────────────────────────────── */
+    --font-brand: 'Dancing Script', cursive;
+    --font-body: 'Inter', sans-serif;
+    --font-serif: 'Libre Baskerville', serif;
+
+    /* ─── Valoración ─────────────────────────────── */
+    --star-gold: #F59E0B;     /* Dorado Vibrante */
+
+    /* ─── Transiciones ───────────────────────────── */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-hover: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
