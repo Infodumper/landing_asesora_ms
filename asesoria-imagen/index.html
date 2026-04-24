@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es" class="overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesoría de Imagen | MS Belleza</title>
+    <meta name="description" content="Asesoría de imagen personalizada por Mercedes Saucedo. Potenciá tu imagen, confianza y bienestar integral.">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Libre+Baskerville:ital,wght@1,700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN + Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:      '#BE185D',
+                        secondary:    '#FB7185',
+                        brandText:    '#1F2A37',
+                        brandSubtext: '#4B5563',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        serif:   ['Libre Baskerville', 'serif'],
+                        brand:   ['Dancing Script', 'cursive'],
+                    },
+                    borderRadius: {
+                        'placa': '2.5rem',
+                        'subplaca': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos globales -->
+    <link rel="icon" type="image/png" href="../assets/img/logo_sin_fondo.png">
+    <link rel="stylesheet" href="../styles/colores.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        .carousel-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-item {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="bg-[#FAF9F6] text-brandText antialiased flex flex-col min-h-screen font-poppins">
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 glass-header border-b border-gray-100/50">
+        <nav class="w-full px-4 md:px-8 py-3 flex justify-between items-center max-w-7xl mx-auto">
+            <div class="flex items-center space-x-3 md:space-x-4">
+                <img id="header-logo" src="../assets/img/logo_sin_fondo.png" alt="Mercedes Saucedo"
+                    class="h-10 md:h-14 w-auto object-contain" loading="eager">
+                <h1 class="text-xl md:text-2xl font-bold tracking-tight text-brandText whitespace-nowrap font-brand">
+                    MS <span class="text-secondary">Belleza</span>
+                </h1>
+            </div>
+            <a href="../index.html"
+                class="flex items-center space-x-2 text-brandSubtext hover:text-primary transition-colors font-bold text-xs tracking-widest uppercase">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                </svg>
+                <span>Volver</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- ── Hero Section ─────────────────────────────── -->
+    <main class="flex-grow pt-32 pb-20">
+        <section class="max-w-4xl mx-auto px-6 text-center space-y-8 animate-fade-in">
+            <div class="space-y-4">
+                <h2 class="text-4xl md:text-6xl font-black text-brandText uppercase tracking-tight font-serif italic">
+                    Asesoría de <span class="text-primary">imagen</span>
+                </h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+            <p class="text-brandSubtext text-lg md:text-xl font-medium leading-relaxed max-w-3xl mx-auto">
+                Acompaño a cada persona a potenciar su imagen, su confianza y su bienestar integral, a través de la estética, el asesoramiento personalizado y un espacio de cuidado que fortalece su seguridad interior.
+            </p>
+        </section>
+
+        <!-- ── Carousel Section ────────────────────────── -->
+        <section class="mt-12 px-4 overflow-hidden">
+            <div class="max-w-5xl mx-auto space-y-8">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-black text-brandText uppercase italic">Galería de <span class="text-secondary">Estilo</span></h3>
+                    <div class="flex gap-2">
+                        <button id="prevBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <button id="nextBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="carousel" class="carousel-container flex gap-4 overflow-x-auto pb-8 -mx-4 px-4 hide-scrollbar">
+                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                        <img src="../assets/img/asesoria_imagen/asesoria_1.jpeg" alt="Asesoría 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                        <img src="../assets/img/asesoria_imagen/asesoria_2.jpeg" alt="Asesoría 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                        <img src="../assets/img/asesoria_imagen/asesoria_3.jpeg" alt="Asesoría 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                        <img src="../assets/img/asesoria_imagen/asesoria_4.jpeg" alt="Asesoría 4" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Servicios (Vertical Boxes) ──────────────── -->
+        <section class="max-w-xl mx-auto px-6 mt-20 space-y-8">
+            
+            <!-- Diagnóstico de Colorimetría -->
+            <article class="service-card bg-white rounded-subplaca p-6 shadow-sm border border-gray-50 flex flex-col md:flex-row gap-6 items-center">
+                <div class="w-full md:w-32 h-32 flex-shrink-0 bg-gray-100 rounded-2xl overflow-hidden">
+                    <img src="../assets/img/asesoria_imagen/service_color.png" alt="Colorimetría" class="w-full h-full object-cover" onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.2'">
+                </div>
+                <div class="flex-grow space-y-3 text-center md:text-left">
+                    <h3 class="text-xl font-bold text-brandText uppercase tracking-tight">Diagnóstico de Colorimetría</h3>
+                    <p class="text-brandSubtext text-sm leading-relaxed">
+                        Descubrí los colores que realzan tu belleza natural y potencian tu imagen.
+                    </p>
+                    <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por el Diagnóstico de Colorimetría" target="_blank"
+                        class="inline-block bg-primary hover:bg-brandText text-white px-6 py-2 rounded-full font-bold uppercase tracking-widest text-[10px] transition-all">
+                        Consultar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Diagnóstico de Morfología -->
+            <article class="service-card bg-white rounded-subplaca p-6 shadow-sm border border-gray-50 flex flex-col md:flex-row gap-6 items-center">
+                <div class="w-full md:w-32 h-32 flex-shrink-0 bg-gray-100 rounded-2xl overflow-hidden">
+                    <img src="../assets/img/asesoria_imagen/service_morfologia.png" alt="Morfología" class="w-full h-full object-cover" onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.2'">
+                </div>
+                <div class="flex-grow space-y-3 text-center md:text-left">
+                    <h3 class="text-xl font-bold text-brandText uppercase tracking-tight">Morfología Facial y Corporal</h3>
+                    <p class="text-brandSubtext text-sm leading-relaxed">
+                        Análisis personalizado para recomendar cortes, accesorios, maquillaje y estilos que armonicen con tu cuerpo y rostro.
+                    </p>
+                    <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por el Diagnóstico de Morfología" target="_blank"
+                        class="inline-block bg-primary hover:bg-brandText text-white px-6 py-2 rounded-full font-bold uppercase tracking-widest text-[10px] transition-all">
+                        Consultar
+                    </a>
+                </div>
+            </article>
+
+            <!-- Cosmiatría -->
+            <article class="service-card bg-white rounded-subplaca p-8 shadow-sm border border-gray-50 space-y-8">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <div class="w-full md:w-32 h-32 flex-shrink-0 bg-gray-100 rounded-2xl overflow-hidden">
+                        <img src="../assets/img/asesoria_imagen/service_cosmiatria.png" alt="Cosmiatría" class="w-full h-full object-cover" onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.2'">
+                    </div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-black text-primary uppercase tracking-tighter italic font-serif">Cosmiatría</h3>
+                        <p class="text-brandSubtext text-xs font-bold uppercase tracking-widest mt-1">Cuidado de la piel profesional</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 pl-2 border-l-2 border-secondary/20">
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-brandText uppercase text-sm">Análisis Facial Personalizado</h4>
+                        <p class="text-brandSubtext text-xs">Evaluación profesional para conocer las necesidades de tu piel.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-brandText uppercase text-sm">Tratamientos Faciales</h4>
+                        <p class="text-brandSubtext text-xs">Rutinas y tratamientos adaptados para mejorar la salud y apariencia de la piel.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-brandText uppercase text-sm">Asesoramiento y Venta de Productos</h4>
+                        <p class="text-brandSubtext text-xs">Recomendaciones personalizadas para tu cuidado diario.</p>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-left">
+                    <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por servicios de Cosmiatría" target="_blank"
+                        class="inline-block bg-primary hover:bg-brandText text-white px-10 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all w-full md:w-auto text-center">
+                        Consultar
+                    </a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────── -->
+    <footer class="py-16 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left items-start">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-black text-brandText uppercase italic">MS Belleza</h3>
+                    <p class="text-brandSubtext font-bold">Mercedes Saucedo</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-brandSubtext space-y-4 font-medium">
+                        <p class="flex items-center justify-center md:justify-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
+                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </span>
+                            +54 9 223 586-9878
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
+                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </span>
+                            Mar del Plata, Argentina
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xs font-black uppercase tracking-widest text-brandText">Seguime</h4>
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-100 text-center">
+                 <p class="text-brandSubtext text-[10px] tracking-[0.2em] uppercase font-bold">
+                    &copy; 2026 Kaizuna | Mar del Plata
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://wa.me/5492235869878" target="_blank" rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-[90] group transition-all duration-500 hover:scale-110 active:scale-95"
+        aria-label="Contactar por WhatsApp">
+        <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors"></div>
+        <img src="../assets/img/whatsapp_2.png" alt="WhatsApp" class="relative w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl">
+    </a>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
+        });
+
+        // Eecto scroll en header
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('bg-white/95', window.scrollY > 20);
+            header.classList.toggle('shadow-sm', window.scrollY > 20);
+        }, { passive: true });
+    </script>
+</body>
+</html>

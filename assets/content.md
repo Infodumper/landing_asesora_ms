@@ -15,11 +15,11 @@ Texto: <span class="font-brand text-[1.6rem] md:text-[2.4rem] align-middle">MS</
 
 ## hero_slide1_title
 Indicación: Título del primer slide del carrusel.
-Texto: Peluquería y <br> <span class="text-secondary">Estética</span>
+Texto: Talleres y <br> <span class="text-secondary">Experiencias</span>
 
 ## hero_slide1_desc
 Indicación: Texto descriptivo del primer slide.
-Texto: Cuido cada detalle de tu imagen y bienestar para que te veas y te sientas mejor.
+Texto: Encuentros creados para aprender, disfrutar y conectar con tu belleza, tu imagen y tu bienestar.
 
 ## hero_slide2_title
 Indicación: Título del segundo slide (Maquillaje).
