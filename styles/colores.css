@@ -1,5 +1,7 @@
 /* colores.css — Tokens de Diseño Global · MS Belleza */
 :root {
+    color-scheme: light;
+
     /* ─── Paleta de Marca ────────────────────────── */
     --primary: #BE185D;       /* Rose 700 */
     --secondary: #FB7185;     /* Rose 400 */
