@@ -1,4 +1,4 @@
-/* colores.css — Tokens de Diseño Global · MS Belleza */
+/* colores.css — Tokens de Diseño Global · MS Bellass */
 :root {
     color-scheme: light;
 
@@ -38,3 +38,4 @@
     --transition-slow: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-hover: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+

@@ -1,7 +1,7 @@
 {
   "name": "landing-gestion-sb",
   "version": "1.0.0",
-  "description": "MS Belleza - Mercedes Saucedo Landing Page",
+  "description": "MS Bellass - Mercedes Saucedo Landing Page",
   "scripts": {
     "dev": "npx http-server -p 3000",
     "test": "echo \"No tests configured\" && exit 0"
@@ -26,3 +26,4 @@
     "googleapis": "^171.4.0"
   }
 }
+

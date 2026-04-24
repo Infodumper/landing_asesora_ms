@@ -1,4 +1,4 @@
-# Gestión de Contenidos — MS Belleza
+# Gestión de Contenidos — MS Bellass
 Este archivo contiene todos los textos editables de la web.
 
 ## meta_description
@@ -221,3 +221,4 @@ Texto: Aros de aleación oro 14 con piedras
 ## product4_price
 Indicación: Precio del cuarto producto.
 Texto: $ 24.000 
+

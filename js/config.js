@@ -3,7 +3,7 @@
  * Modifica este archivo para actualizar la información en toda la web.
  */
 const CONFIG = {
-    brandName: "MS Belleza",
+    brandName: "MS Bellass",
     consultantName: "Mercedes Saucedo",
     consultantTitle: "Asesora de Imagen",
     whatsappNumber: "5492235869878",
@@ -18,3 +18,4 @@ const CONFIG = {
 
 // Exportar si se usa en módulos, o simplemente dejarlo global para scripts simples
 window.APP_CONFIG = CONFIG;
+
