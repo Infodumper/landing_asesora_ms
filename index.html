@@ -150,7 +150,7 @@
                         class="mt-auto text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
                         En MS Bellass ayudamos a mujeres a descubrir su estilo, potenciar su presencia y verse seguras en cada paso.
                     </p>
-                    <a href="#productos"
+                    <a href="#servicios"
                         class="bg-primary hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
                         Descubrí más
                     </a>
@@ -288,7 +288,7 @@
     <!-- ══════════════════════════════════════════
          CATEGORÍAS — Ribbon de Servicios
     ══════════════════════════════════════════ -->
-    <section class="bg-white pt-10 pb-6" aria-labelledby="cats-heading">
+    <section id="servicios" class="bg-white pt-10 pb-6 scroll-mt-24" aria-labelledby="cats-heading">
         <div class="w-full max-w-7xl mx-auto px-4 text-center">
             <h2 id="cats-heading" class="text-2xl md:text-3xl font-black text-brandText">
                 Encontrá la categoría perfecta para vos
@@ -774,7 +774,7 @@
                                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                             </span>
-                            +54 9 223 586-9878
+                            +54 9 2233 45-3279
                         </p>
                         <p class="flex items-center justify-center md:justify-start gap-3">
                             <span
@@ -822,7 +822,7 @@
     </footer>
 
     <!-- Botón Flotante WhatsApp -->
-    <a href="https://wa.me/5492235869878" target="_blank" rel="noopener noreferrer"
+    <a href="https://wa.me/5492233453279" target="_blank" rel="noopener noreferrer"
         class="fixed bottom-24 right-6 z-[90] group transition-all duration-500 hover:scale-110 active:scale-95"
         aria-label="Contactar por WhatsApp">
         <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors">
@@ -1106,7 +1106,7 @@
                     msg += `- *${i.qty}x* ${i.name} (Cód: ${i.code}) — $${sub.toLocaleString('es-AR')}\n`;
                 });
                 msg += `\nTOTAL: $${total.toLocaleString('es-AR')}\n\n¿Me podés confirmar disponibilidad? ¡Gracias!`;
-                window.open(`https://wa.me/5492235869878?text=${encodeURIComponent(msg)}`, '_blank');
+                window.open(`https://wa.me/5492233453279?text=${encodeURIComponent(msg)}`, '_blank');
             },
 
             clear() {
@@ -1139,7 +1139,7 @@
             }
 
             const text = `*Consulta desde la Web*%0A%0A*Nombre:* ${name}%0A*WhatsApp/tel:* ${phone}%0A*Email:* ${email || 'No indicado'}%0A*Mensaje:* ${msg}`;
-            const waLink = `https://wa.me/5492235869878?text=${text}`;
+            const waLink = `https://wa.me/5492233453279?text=${text}`;
 
             window.open(waLink, '_blank');
         }
