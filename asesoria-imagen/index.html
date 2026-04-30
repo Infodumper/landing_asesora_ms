@@ -64,6 +64,14 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+        /* Ocultar barra de scroll en carrusel */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 
@@ -105,31 +113,30 @@
 
         <!-- ── Carousel Section ────────────────────────── -->
         <section class="mt-12 px-4 overflow-hidden">
-            <div class="max-w-5xl mx-auto space-y-8">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-black text-brandText uppercase italic">Galería de <span class="text-secondary">Estilo</span></h3>
-                    <div class="flex gap-2">
-                        <button id="prevBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                        <button id="nextBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </button>
-                    </div>
-                </div>
+            <div class="max-w-5xl mx-auto space-y-6">
+                <h3 class="text-xl font-black text-brandText uppercase italic">Galería de <span class="text-secondary">Estilo</span></h3>
                 
-                <div id="carousel" class="carousel-container flex gap-4 overflow-x-auto pb-8 -mx-4 px-4 hide-scrollbar">
-                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
-                        <img src="../assets/img/asesoria_imagen/asesoria_1.jpeg" alt="Asesoría 1" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
-                        <img src="../assets/img/asesoria_imagen/asesoria_2.jpeg" alt="Asesoría 2" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
-                        <img src="../assets/img/asesoria_imagen/asesoria_3.jpeg" alt="Asesoría 3" class="w-full h-full object-cover">
-                    </div>
-                    <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
-                        <img src="../assets/img/asesoria_imagen/asesoria_4.jpeg" alt="Asesoría 4" class="w-full h-full object-cover">
+                <div class="relative w-full group">
+                    <button id="prevBtn" class="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-100 flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-10 text-brandText">
+                        <svg class="w-5 h-5 pr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button id="nextBtn" class="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-100 flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-10 text-brandText">
+                        <svg class="w-5 h-5 pl-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <div id="carousel" class="carousel-container flex gap-4 overflow-x-auto hide-scrollbar pb-2">
+                        <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                            <img src="../assets/img/asesoria_imagen/asesoria_1.jpeg" alt="Asesoría 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                            <img src="../assets/img/asesoria_imagen/asesoria_2.jpeg" alt="Asesoría 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                            <img src="../assets/img/asesoria_imagen/asesoria_3.jpeg" alt="Asesoría 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="carousel-item w-[85%] md:w-[45%] aspect-[16/10] bg-gray-100 rounded-placa overflow-hidden">
+                            <img src="../assets/img/asesoria_imagen/asesoria_4.jpeg" alt="Asesoría 4" class="w-full h-full object-cover">
+                        </div>
                     </div>
                 </div>
             </div>

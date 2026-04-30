@@ -13,29 +13,37 @@ Texto: <span class="font-brand text-[1.6rem] md:text-[2.4rem] align-middle">MS</
 
 # CARRUSEL
 
+## hero_slide0_title
+Indicación: Título del slide genérico.
+Texto: Título genérico <br> <span class="text-secondary">Subtítulo</span>
+
+## hero_slide0_desc
+Indicación: Texto descriptivo del slide genérico.
+Texto: Texto descriptivo genérico.
+
 ## hero_slide1_title
 Indicación: Título del primer slide del carrusel.
-Texto: Talleres y <br> <span class="text-secondary">Experiencias</span>
+Texto: Asesoría <br> de <span class="text-secondary">Imagen</span>
 
 ## hero_slide1_desc
-Indicación: Texto descriptivo del primer slide.
-Texto: Encuentros creados para aprender, disfrutar y conectar con tu belleza, tu imagen y tu bienestar.
+Indicación: Texto descriptivo del primer slide del carrusel.
+Texto: Belleza, cuidado y bienestar en servicios realizados con dedicación y atención personalizada.
 
 ## hero_slide2_title
-Indicación: Título del segundo slide (Maquillaje).
-Texto: Maquillaje Social <br> <span class="text-secondary"> y Artístico</span>
+Indicación: Título del segundo slide.
+Texto: Talleres y <br> <span class="text-secondary">Experiencias</span>
 
 ## hero_slide2_desc
 Indicación: Texto descriptivo del segundo slide.
-Texto: Realzo tu belleza de manera armónica para que te sientas segura, cómoda y auténtica.
+Texto: Encuentros creados para aprender, disfrutar y conectar con tu belleza, tu imagen y tu bienestar.
 
 ## hero_slide3_title
-Indicación: Título del tercer slide (Asesoría).
-Texto: Asesoría <br> de <span class="text-secondary">Imagen</span>
+Indicación: Título del tercer slide.
+Texto: Maquillaje Social<br> <span class="text-secondary">Y artístico</span>
 
 ## hero_slide3_desc
 Indicación: Texto descriptivo del tercer slide.
-Texto: Te ayudo a descubrir y potenciar tu estilo para que tu imagen refleje lo mejor de vos.
+Texto: Realizado con dedicación para que luzcas como imaginás y disfrutes cada momento.
 
 ## hero_slide4_title
 Indicación: Título del cuarto slide (Joyas).

@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>Maquillaje Profesional | MS Bellass</title>
-    <meta name="description" content="Maquillaje profesional para eventos sociales y Glitter Bar. Resaltamos tu esencia con estilo y delicadeza.">
+    <meta name="description"
+        content="Maquillaje profesional para eventos sociales y Glitter Bar. Resaltamos tu esencia con estilo y delicadeza.">
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Libre+Baskerville:ital,wght@1,700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Libre+Baskerville:ital,wght@1,700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
 
     <!-- Tailwind CDN + Config -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,15 +23,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary:      '#BE185D',
-                        secondary:    '#FB7185',
-                        brandText:    '#1F2A37',
+                        primary: '#BE185D',
+                        secondary: '#FB7185',
+                        brandText: '#1F2A37',
                         brandSubtext: '#4B5563',
                     },
                     fontFamily: {
                         poppins: ['Poppins', 'sans-serif'],
-                        serif:   ['Libre Baskerville', 'serif'],
-                        brand:   ['Dancing Script', 'cursive'],
+                        serif: ['Libre Baskerville', 'serif'],
+                        brand: ['Dancing Script', 'cursive'],
                     },
                     borderRadius: {
                         'placa': '2.5rem',
@@ -49,21 +52,34 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+
         .hero-shadow {
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
+
         .reveal-section {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
+
         .reveal-section.active {
             opacity: 1;
             transform: translateY(0);
         }
+
         .carousel-item {
             scroll-snap-align: start;
             flex-shrink: 0;
+        }
+
+        /* Ocultar barra de scroll en carrusel */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
@@ -83,7 +99,7 @@
             <a href="../index.html"
                 class="flex items-center space-x-2 text-brandSubtext hover:text-primary transition-colors font-bold text-xs tracking-widest uppercase">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
                 </svg>
                 <span>Volver</span>
             </a>
@@ -93,102 +109,133 @@
     <!-- ── Hero Section ─────────────────────────────── -->
     <section class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="../assets/img/maquillaje/slide_maquillaje_frente.jpeg" alt="Maquillaje Profesional" 
+            <img src="../assets/img/maquillaje/slide_maquillaje_frente.jpeg" alt="Maquillaje Profesional"
                 class="w-full h-full object-cover brightness-75"
                 onerror="this.src='../assets/img/carousel_2.jpeg'; this.classList.add('opacity-40')">
             <div class="absolute inset-0 bg-black/30"></div>
         </div>
-        
+
         <div class="relative z-10 text-center max-w-4xl px-6 space-y-6 animate-fade-in">
-            <h2 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter italic font-serif hero-shadow">
+            <h2
+                class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter italic font-serif hero-shadow">
                 Maquillaje <br> <span class="text-secondary">Profesional</span>
             </h2>
             <p class="text-white text-lg md:text-2xl font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-lg">
-                Cada maquillaje está pensado para resaltar tu esencia, iluminar tu rostro y acompañar tu imagen con delicadeza y estilo.
+                Cada maquillaje está pensado para resaltar tu esencia, iluminar tu rostro y acompañar tu imagen con
+                delicadeza y estilo.
             </p>
         </div>
     </section>
 
     <main class="flex-grow pb-20 space-y-16">
-        
+
         <!-- ── Gallery Carousel ────────────────────────── -->
         <section class="pt-20 px-4 overflow-hidden">
             <div class="max-w-7xl mx-auto space-y-8">
-                <div class="flex items-center justify-between px-4">
-                    <h3 class="text-xl md:text-2xl font-black text-brandText uppercase italic">Galería de <span class="text-secondary">Trabajos</span></h3>
-                    <div class="flex gap-2">
-                        <button id="prevBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                        <button id="nextBtn" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-md transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </button>
-                    </div>
-                </div>
+                <h3 class="text-xl md:text-2xl font-black text-brandText uppercase italic text-left">Galería de <span
+                        class="text-secondary">Trabajos</span></h3>
                 
-                <div id="carousel" class="flex gap-4 overflow-x-auto pb-10 -mx-4 px-4 hide-scrollbar snap-x snap-mandatory">
-                    <!-- Merce -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/Merce.jpeg" alt="Merce" class="w-full h-full object-cover">
-                    </div>
-                    <!-- foto1 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/foto1.jpeg" alt="Trabajo 1" class="w-full h-full object-cover">
-                    </div>
-                    <!-- foto2 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/foto2.jpeg" alt="Trabajo 2" class="w-full h-full object-cover">
-                    </div>
-                    <!-- foto3 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/foto3.jpeg" alt="Trabajo 3" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Evento -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/evento_maquillaje.jpeg" alt="Evento" class="w-full h-full object-cover">
-                    </div>
-                    <!-- glitter5 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/glitter5.jpeg" alt="Glitter 5" class="w-full h-full object-cover">
-                    </div>
-                    <!-- glitter2 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/glitter2.jpeg" alt="Glitter 2" class="w-full h-full object-cover">
-                    </div>
-                    <!-- glitter3 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/glitter3.jpeg" alt="Glitter 3" class="w-full h-full object-cover">
-                    </div>
-                    <!-- glitter4 -->
-                    <div class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
-                        <img src="../assets/img/maquillaje/glitter4.jpeg" alt="Glitter 4" class="w-full h-full object-cover">
+                <div class="relative w-full group">
+                    <button id="prevBtn"
+                        class="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-100 flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-10 text-brandText">
+                        <svg class="w-5 h-5 pr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="nextBtn"
+                        class="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-100 flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-10 text-brandText">
+                        <svg class="w-5 h-5 pl-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <div id="carousel"
+                        class="carousel-container flex gap-4 overflow-x-auto pb-2 hide-scrollbar snap-x snap-mandatory">
+                        <!-- Merce -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/Merce.jpeg" alt="Merce" class="w-full h-full object-cover">
+                        </div>
+                        <!-- foto1 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/foto1.jpeg" alt="Trabajo 1"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- foto2 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/foto2.jpeg" alt="Trabajo 2"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- foto3 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/foto3.jpeg" alt="Trabajo 3"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- Evento -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/evento_maquillaje.jpeg" alt="Evento"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- glitter5 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/glitter5.jpeg" alt="Glitter 5"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- glitter2 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/glitter2.jpeg" alt="Glitter 2"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- glitter3 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/glitter3.jpeg" alt="Glitter 3"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- glitter4 -->
+                        <div
+                            class="snap-start flex-shrink-0 w-[280px] md:w-[350px] aspect-[4/5] bg-gray-100 rounded-placa overflow-hidden shadow-lg">
+                            <img src="../assets/img/maquillaje/glitter4.jpeg" alt="Glitter 4"
+                                class="w-full h-full object-cover">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- ── Servicio 1: Eventos Sociales ──────────────── -->
         <section class="reveal-section max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
                 <!-- Texto -->
                 <div class="w-full md:w-1/2 space-y-8 order-2 md:order-1">
                     <div class="space-y-4">
-                        <span class="text-secondary font-black tracking-[0.3em] uppercase text-xs">Exclusividad y Detalle</span>
+                        <span class="text-secondary font-black tracking-[0.3em] uppercase text-xs">Exclusividad y
+                            Detalle</span>
                         <h3 class="text-3xl md:text-5xl font-black text-brandText uppercase italic font-serif">
                             Maquillaje para <br> <span class="text-primary">Eventos Sociales</span>
                         </h3>
                         <div class="w-16 h-1 bg-secondary rounded-full"></div>
                     </div>
-                    
+
                     <div class="space-y-4 text-brandSubtext text-lg leading-relaxed">
                         <p class="font-bold text-brandText">Novias, 15 años, madrinas y eventos especiales.</p>
                         <p>
-                            Incluye prueba previa sin costo para asegurar el resultado ideal. Trabajamos con productos de alta gama para garantizar durabilidad y un acabado impecable bajo cualquier luz.
+                            Incluye prueba previa sin costo para asegurar el resultado ideal. Trabajamos con productos
+                            de HD para garantizar durabilidad y un acabado impecable bajo cualquier luz.
                         </p>
                     </div>
 
                     <div>
-                        <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por Maquillaje para Eventos" target="_blank"
+                        <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por Maquillaje para Eventos"
+                            target="_blank"
                             class="inline-block bg-primary hover:bg-brandText text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm transition-all shadow-xl hover:-translate-y-1">
                             Consultar disponibilidad
                         </a>
@@ -198,9 +245,11 @@
                 <!-- Imagen -->
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="relative group">
-                        <div class="absolute -inset-4 bg-secondary/10 rounded-[2.5rem] rotate-2 transition-transform group-hover:rotate-0"></div>
+                        <div
+                            class="absolute -inset-4 bg-secondary/10 rounded-[2.5rem] rotate-2 transition-transform group-hover:rotate-0">
+                        </div>
                         <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[4/5]">
-                            <img src="../assets/img/maquillaje/evento_maquillaje.jpeg" alt="Maquillaje para Eventos" 
+                            <img src="../assets/img/maquillaje/evento_maquillaje.jpeg" alt="Maquillaje para Eventos"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.1'; this.parentElement.classList.add('bg-gray-50')">
                         </div>
@@ -209,15 +258,17 @@
             </div>
         </section>
 
-        <!-- ── Servicio 2: Glitter Bar ──────────────────── -->
+        <!-- ── Servicio 2: Peinados para eventos ────────── -->
         <section class="reveal-section max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
                 <!-- Imagen -->
                 <div class="w-full md:w-1/2">
                     <div class="relative group">
-                        <div class="absolute -inset-4 bg-primary/10 rounded-[2.5rem] -rotate-2 transition-transform group-hover:rotate-0"></div>
+                        <div
+                            class="absolute -inset-4 bg-primary/10 rounded-[2.5rem] -rotate-2 transition-transform group-hover:rotate-0">
+                        </div>
                         <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[4/5]">
-                            <img src="../assets/img/maquillaje/glitter.jpeg" alt="Glitter Bar" 
+                            <img src="../assets/img/maquillaje/peinados_para_eventos.jpeg" alt="Peinados para eventos"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.1'; this.parentElement.classList.add('bg-gray-50')">
                         </div>
@@ -227,26 +278,76 @@
                 <!-- Texto -->
                 <div class="w-full md:w-1/2 space-y-8">
                     <div class="space-y-4">
-                        <span class="text-primary font-black tracking-[0.3em] uppercase text-xs">Diversión y Brillo</span>
+                        <span class="text-primary font-black tracking-[0.3em] uppercase text-xs">Estilo y Versatilidad</span>
                         <h3 class="text-3xl md:text-5xl font-black text-brandText uppercase italic font-serif">
-                            Glitter Bar <br> <span class="text-secondary">para Eventos</span>
+                            Peinados para <br> <span class="text-secondary">Eventos</span>
                         </h3>
-                        <h4 class="text-xl font-bold text-brandSubtext italic">Stand de Glitter</h4>
                         <div class="w-16 h-1 bg-primary rounded-full"></div>
                     </div>
-                    
+
                     <div class="space-y-4 text-brandSubtext text-lg leading-relaxed">
-                        <p class="font-bold text-brandText">Servicio ideal para fiestas, casamientos, cumpleaños y eventos sociales.</p>
+                        <p class="font-bold text-brandText">Diseños personalizados para cada ocasión.</p>
                         <p>
-                            Un espacio divertido y estético donde los invitados pueden sumar brillo, color y originalidad a su look. Contamos con una amplia variedad de texturas, gemas y diseños para todas las edades.
+                            Desde recogidos elegantes hasta ondas naturales, creamos el peinado ideal que complemente tu maquillaje y resalte tu belleza en ese día especial.
                         </p>
                     </div>
 
                     <div>
-                        <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por el Stand de Glitter" target="_blank"
+                        <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por Peinados para Eventos"
+                            target="_blank"
+                            class="inline-block bg-secondary hover:bg-brandText text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm transition-all shadow-xl hover:-translate-y-1">
+                            Consultar Peinado
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Servicio 3: Glitter Bar ──────────────────── -->
+        <section id="glitter-bar" class="reveal-section max-w-7xl mx-auto px-6 scroll-mt-24">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <!-- Texto -->
+                <div class="w-full md:w-1/2 space-y-8 order-2 md:order-1">
+                    <div class="space-y-4">
+                        <span class="text-secondary font-black tracking-[0.3em] uppercase text-xs">Diversión y
+                            Brillo</span>
+                        <h3 class="text-3xl md:text-5xl font-black text-brandText uppercase italic font-serif">
+                            Glitter Bar <br> <span class="text-primary">para Eventos</span>
+                        </h3>
+                        <h4 class="text-xl font-bold text-brandSubtext italic">Stand de Glitter</h4>
+                        <div class="w-16 h-1 bg-secondary rounded-full"></div>
+                    </div>
+
+                    <div class="space-y-4 text-brandSubtext text-lg leading-relaxed">
+                        <p class="font-bold text-brandText">Servicio ideal para fiestas, casamientos, cumpleaños y
+                            eventos sociales.</p>
+                        <p>
+                            Un espacio divertido y estético donde los invitados pueden sumar brillo, color y
+                            originalidad a su look. Contamos con una amplia variedad de texturas, gemas y diseños para
+                            todas las edades.
+                        </p>
+                    </div>
+
+                    <div>
+                        <a href="https://wa.me/5492235869878?text=Hola! Me gustaría consultar por el Stand de Glitter"
+                            target="_blank"
                             class="inline-block bg-secondary hover:bg-brandText text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm transition-all shadow-xl hover:-translate-y-1">
                             Reservar fecha
                         </a>
+                    </div>
+                </div>
+
+                <!-- Imagen -->
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="relative group">
+                        <div
+                            class="absolute -inset-4 bg-secondary/10 rounded-[2.5rem] rotate-2 transition-transform group-hover:rotate-0">
+                        </div>
+                        <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[4/5]">
+                            <img src="../assets/img/maquillaje/glitter.jpeg" alt="Glitter Bar"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                onerror="this.src='../assets/img/logo_sin_fondo.png'; this.style.opacity='0.1'; this.parentElement.classList.add('bg-gray-50')">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,14 +366,23 @@
                 <div class="space-y-4">
                     <div class="text-brandSubtext space-y-4 font-medium">
                         <p class="flex items-center justify-center md:justify-start gap-3">
-                            <span class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
-                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span
+                                class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
+                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
                             </span>
                             +54 9 223 586-9878
                         </p>
                         <p class="flex items-center justify-center md:justify-start gap-3">
-                            <span class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
-                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span
+                                class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shadow-sm border border-gray-100">
+                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
                             </span>
                             Mar del Plata, Argentina
                         </p>
@@ -281,17 +391,25 @@
                 <div class="space-y-4">
                     <h4 class="text-xs font-black uppercase tracking-widest text-brandText">Seguime</h4>
                     <div class="flex justify-center md:justify-start gap-4">
-                        <a href="https://www.instagram.com/ms.bellass/" target="_blank" class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        <a href="https://www.instagram.com/ms.bellass/" target="_blank"
+                            class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
                         </a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        <a href="#"
+                            class="w-12 h-12 rounded-full bg-gray-50 shadow-sm border border-gray-100 flex items-center justify-center text-brandText hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="mt-12 pt-8 border-t border-gray-100 text-center">
-                 <p class="text-brandSubtext text-[10px] tracking-[0.2em] uppercase font-bold">
+                <p class="text-brandSubtext text-[10px] tracking-[0.2em] uppercase font-bold">
                     &copy; 2026 Kaizuna | Mar del Plata
                 </p>
             </div>
@@ -302,8 +420,10 @@
     <a href="https://wa.me/5492235869878" target="_blank" rel="noopener noreferrer"
         class="fixed bottom-6 right-6 z-[90] group transition-all duration-500 hover:scale-110 active:scale-95"
         aria-label="Contactar por WhatsApp">
-        <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors"></div>
-        <img src="../assets/img/whatsapp_2.png" alt="WhatsApp" class="relative w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl">
+        <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors">
+        </div>
+        <img src="../assets/img/whatsapp_2.png" alt="WhatsApp"
+            class="relative w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl">
     </a>
 
     <script>
@@ -325,7 +445,7 @@
         // Eecto reveal al scroll
         const reveals = document.querySelectorAll('.reveal-section');
         const observerOptions = { threshold: 0.1 };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -344,5 +464,5 @@
         }, { passive: true });
     </script>
 </body>
-</html>
 
+</html>

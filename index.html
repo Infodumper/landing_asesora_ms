@@ -120,72 +120,52 @@
     <!-- ══════════════════════════════════════════
          HERO — Carrusel Infinito
     ══════════════════════════════════════════ -->
-    <section id="inicio" class="relative w-full h-[calc(100vh-2.65rem)] md:h-[calc(100vh-4.65rem)] mt-[2.65rem] md:mt-[4.65rem] overflow-hidden bg-black">
+    <section id="inicio"
+        class="relative w-full h-[calc(100vh-2.65rem)] md:h-[calc(100vh-4.65rem)] mt-[2.65rem] md:mt-[4.65rem] overflow-hidden bg-black">
         <div id="carousel-track" class="h-full w-full flex" style="transform: translateX(-100%);">
 
             <!-- Clon de Slide 4 (Joyas — al inicio para loop infinito) -->
             <div class="carousel-item min-w-full h-full relative" aria-hidden="true">
-                <img id="carousel-img-clone-4" src="assets/img/carousel_4.jpeg" alt=""
+                <img id="carousel-img-clone-4" src="assets/img/portada/carousel_4.jpeg" alt=""
                     class="w-full h-full object-cover opacity-60">
                 <div
-                    class="absolute inset-0 flex flex-col justify-start items-start text-left pt-[18vh] pb-32 pl-6 md:pl-24">
-                    <h2 class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg">Joyas y Semijoyas</h2>
+                    class="absolute inset-0 flex flex-col justify-center items-center text-center pt-[18vh] pb-32 px-6">
+                    <h2 class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">Joyas y <span class="text-secondary">Semijoyas</span></h2>
                 </div>
             </div>
 
-            <!-- Slide 1: Talleres y Experiencias -->
+            <!-- Slide 0: Genérico -->
             <div class="carousel-item min-w-full h-full relative">
-                <img id="carousel-img-1" src="assets/img/talleres/slide_talleres.jpeg" alt="Talleres y Experiencias"
-                    class="w-full h-full object-cover opacity-60" loading="eager" fetchpriority="high"
-                    onerror="this.src='assets/img/carousel_1.jpeg'">
+                <img id="carousel-img-0" src="assets/img/portada/carousel_0.png" alt="Bienvenida"
+                    class="w-full h-full object-cover opacity-60" loading="eager" fetchpriority="high">
+                <div
+                    class="absolute inset-0 flex flex-col justify-center items-center text-center pt-[18vh] pb-32 px-6">
+                    <h2 data-content="hero_slide0_title"
+                        class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
+                        Título <br> <span class="text-secondary">Genérico</span>
+                    </h2>
+                    <p data-content="hero_slide0_desc"
+                        class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
+                        Texto descriptivo genérico.
+                    </p>
+                    <a href="#productos"
+                        class="bg-primary hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
+                        Descubrir más
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slide 1: Asesoria -->
+            <div class="carousel-item min-w-full h-full relative">
+                <img id="carousel-img-1" src="assets/img/portada/carousel_1.jpeg" alt="Asesoria de Imagen"
+                    class="w-full h-full object-cover opacity-60" loading="lazy">
                 <div
                     class="absolute inset-0 flex flex-col justify-start items-start text-left pt-[18vh] pb-32 pl-6 md:pl-24">
                     <h2 data-content="hero_slide1_title"
                         class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
-                        Talleres y <br> <span class="text-secondary">Experiencias</span>
-                    </h2>
-                    <p data-content="hero_slide1_desc"
-                        class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
-                        Encuentros creados para aprender, disfrutar y conectar con tu belleza, tu imagen y tu bienestar.
-                    </p>
-                    <a href="talleres-experiencias/index.html"
-                        class="mt-auto bg-primary hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
-                        Ver experiencias
-                    </a>
-                </div>
-            </div>
-
-            <!-- Slide 2: Maquillaje -->
-            <div class="carousel-item min-w-full h-full relative">
-                <img id="carousel-img-2" src="assets/img/carousel_2.jpeg" alt="Maquillaje"
-                    class="w-full h-full object-cover opacity-60" loading="lazy">
-                <div
-                    class="absolute inset-0 flex flex-col justify-start items-end text-right pt-[18vh] pb-32 pr-16 md:pr-24">
-                    <h2 data-content="hero_slide2_title"
-                        class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
-                        Maquillaje Social<br> <span class="text-secondary">Y artístico</h2>
-                    <p data-content="hero_slide2_desc"
-                        class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
-                        Realizado con dedicación para que luzcas como imaginás y disfrutes cada momento.
-                    </p>
-                    <a href="maquillaje/index.html"
-                        class="mt-auto bg-secondary hover:bg-white hover:text-secondary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
-                        Ver servicios
-                    </a>
-                </div>
-            </div>
-
-            <!-- Slide 3: Peluquería -->
-            <div class="carousel-item min-w-full h-full relative">
-                <img id="carousel-img-3" src="assets/img/carousel_3.jpeg" alt="Peluquería"
-                    class="w-full h-full object-cover opacity-60" loading="lazy">
-                <div
-                    class="absolute inset-0 flex flex-col justify-start items-start text-left pt-[18vh] pb-32 pl-6 md:pl-24">
-                    <h2 data-content="hero_slide3_title"
-                        class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
                         Asesoria <br> de <span class="text-secondary">Imagen</span>
                     </h2>
-                    <p data-content="hero_slide3_desc"
+                    <p data-content="hero_slide1_desc"
                         class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
                         Belleza, cuidado y bienestar en servicios realizados con dedicación y atención personalizada.
                     </p>
@@ -196,9 +176,51 @@
                 </div>
             </div>
 
+            <!-- Slide 2: Talleres y Experiencias -->
+            <div class="carousel-item min-w-full h-full relative">
+                <img id="carousel-img-2" src="assets/img/talleres/slide_talleres.jpeg" alt="Talleres y Experiencias"
+                    class="w-full h-full object-cover opacity-60" loading="lazy"
+                    onerror="this.src='assets/img/portada/carousel_2.jpeg'">
+                <div
+                    class="absolute inset-0 flex flex-col justify-start items-start text-left pt-[18vh] pb-32 pl-6 md:pl-24">
+                    <h2 data-content="hero_slide2_title"
+                        class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
+                        Talleres y <br> <span class="text-secondary">Experiencias</span>
+                    </h2>
+                    <p data-content="hero_slide2_desc"
+                        class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
+                        Encuentros creados para aprender, disfrutar y conectar con tu belleza, tu imagen y tu bienestar.
+                    </p>
+                    <a href="talleres-experiencias/index.html"
+                        class="mt-auto bg-primary hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
+                        Ver experiencias
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Maquillaje -->
+            <div class="carousel-item min-w-full h-full relative">
+                <img id="carousel-img-3" src="assets/img/portada/carousel_3.jpeg" alt="Maquillaje"
+                    class="w-full h-full object-cover opacity-60" loading="lazy">
+                <div
+                    class="absolute inset-0 flex flex-col justify-start items-end text-right pt-[18vh] pb-32 pr-16 md:pr-24">
+                    <h2 data-content="hero_slide3_title"
+                        class="text-4xl md:text-7xl font-black text-white mb-4 drop-shadow-lg uppercase italic">
+                        Maquillaje Social<br> <span class="text-secondary">Y artístico</h2>
+                    <p data-content="hero_slide3_desc"
+                        class="text-lg md:text-xl font-light text-gray-100 max-w-lg mb-8 drop-shadow-md">
+                        Realizado con dedicación para que luzcas como imaginás y disfrutes cada momento.
+                    </p>
+                    <a href="maquillaje/index.html"
+                        class="mt-auto bg-secondary hover:bg-white hover:text-secondary text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all transform hover:-translate-y-1 text-sm shadow-xl">
+                        Ver servicios
+                    </a>
+                </div>
+            </div>
+
             <!-- Slide 4: Joyas -->
             <div class="carousel-item min-w-full h-full relative">
-                <img id="carousel-img-4" src="assets/img/carousel_4.jpeg" alt="Joyas y Semijoyas"
+                <img id="carousel-img-4" src="assets/img/portada/carousel_4.jpeg" alt="Joyas y Semijoyas"
                     class="w-full h-full object-cover opacity-60" loading="lazy">
                 <div
                     class="absolute inset-0 flex flex-col justify-center items-center text-center pt-[18vh] pb-32 px-6">
@@ -224,9 +246,9 @@
                 </div>
             </div>
 
-            <!-- Clon de Slide 1 (Joyas — para cierre de loop) -->
+            <!-- Clon de Slide 0 (para cierre de loop) -->
             <div class="carousel-item min-w-full h-full relative" aria-hidden="true">
-                <img id="carousel-img-clone-1" src="assets/img/carousel_1.jpeg" alt=""
+                <img id="carousel-img-clone-0" src="assets/img/portada/carousel_0.png" alt=""
                     class="w-full h-full object-cover opacity-60">
             </div>
         </div>
@@ -242,6 +264,8 @@
                 aria-label="Diapositiva 3"></button>
             <button class="carousel-dot w-2 h-2 rounded-full bg-white/40" data-index="3"
                 aria-label="Diapositiva 4"></button>
+            <button class="carousel-dot w-2 h-2 rounded-full bg-white/40" data-index="4"
+                aria-label="Diapositiva 5"></button>
         </div>
 
         <!-- Controles del Carrusel -->
@@ -289,7 +313,8 @@
                     </a>
 
                     <!-- Asesoría de Imagen -->
-                    <a href="asesoria-imagen/index.html" class="flex flex-col items-center group cursor-pointer min-w-[100px]"
+                    <a href="asesoria-imagen/index.html"
+                        class="flex flex-col items-center group cursor-pointer min-w-[100px]"
                         aria-label="Ver servicios de Asesoría de Imagen">
                         <div
                             class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
@@ -297,7 +322,58 @@
                                 style="-webkit-mask-image: url('assets/img/menu_icons/ico_belleza.png'); mask-image: url('assets/img/menu_icons/ico_belleza.png');">
                             </div>
                         </div>
-                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Asesoría<br>de Imagen</span>
+                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Asesoría<br>de
+                            Imagen</span>
+                    </a>
+
+                    <!-- Talleres y Experiencias -->
+                    <a href="talleres-experiencias/index.html"
+                        class="flex flex-col items-center group cursor-pointer min-w-[100px]"
+                        aria-label="Ver Talleres y Experiencias">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 icon-mask scale-[1.2] translate-y-2"
+                                style="-webkit-mask-image: url('assets/img/menu_icons/ico_talleres.png'); mask-image: url('assets/img/menu_icons/ico_talleres.png');">
+                            </div>
+                        </div>
+                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Talleres
+                            y<br>Experiencias</span>
+                    </a>
+
+                    <!-- Maquillaje -->
+                    <a href="maquillaje/index.html"
+                        class="flex flex-col items-center group cursor-pointer min-w-[100px]"
+                        aria-label="Ver servicios de Maquillaje">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 icon-mask"
+                                style="-webkit-mask-image: url('assets/img/menu_icons/ico_maquillaje.png'); mask-image: url('assets/img/menu_icons/ico_maquillaje.png');">
+                            </div>
+                        </div>
+                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Maquillaje</span>
+                    </a>
+
+                    <!-- Glitter Bar -->
+                    <a href="maquillaje/index.html#glitter-bar"
+                        class="flex flex-col items-center group cursor-pointer min-w-[100px]"
+                        aria-label="Ver Glitter Bar">
+                        <div
+                            class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 scale-[1.5] translate-y-2.5 text-primary">
+                                <svg width="100%" height="100%">
+                                    <defs>
+                                        <mask id="glitter-mask">
+                                            <image href="assets/img/menu_icons/ico_glitter.png" width="100%"
+                                                height="100%" preserveAspectRatio="xMidYMid meet"
+                                                style="filter: invert(1) grayscale(1) brightness(5);" />
+                                        </mask>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="var(--icons-primary)"
+                                        mask="url(#glitter-mask)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Glitter<br>Bar</span>
                     </a>
 
                     <!-- Joyas y Semijoyas -->
@@ -310,31 +386,6 @@
                         </div>
                         <span class="text-sm font-bold tracking-tight text-brandText text-center">Joyas
                             y<br>Semijoyas</span>
-                    </a>
-
-                    <!-- Maquillaje -->
-                    <a href="maquillaje/index.html" class="flex flex-col items-center group cursor-pointer min-w-[100px]"
-                        aria-label="Ver servicios de Maquillaje">
-                        <div
-                            class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
-                            <div class="w-10 h-10 md:w-12 md:h-12 icon-mask"
-                                style="-webkit-mask-image: url('assets/img/menu_icons/ico_maquillaje.png'); mask-image: url('assets/img/menu_icons/ico_maquillaje.png');">
-                            </div>
-                        </div>
-                        <span class="text-sm font-bold tracking-tight text-brandText text-center">Maquillaje</span>
-                    </a>
-
-                    <!-- Talleres y Experiencias -->
-                    <a href="talleres-experiencias/index.html"
-                        class="flex flex-col items-center group cursor-pointer min-w-[100px]"
-                        aria-label="Ver Talleres y Experiencias">
-                        <div
-                            class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#F3F4F6] shadow-[4px_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center text-primary border border-gray-50 group-hover:shadow-[6px_6px_20px_rgba(0,0,0,0.12)] group-hover:-translate-y-1 transition-all mb-4">
-                            <div class="w-10 h-10 md:w-12 md:h-12 icon-mask"
-                                style="-webkit-mask-image: url('assets/img/menu_icons/ico_talleres_fixed.png'); mask-image: url('assets/img/menu_icons/ico_talleres_fixed.png');">
-                            </div>
-                        </div>
-                        <span class="text-sm font-bold tracking-tight text-brandText text-center uppercase">Talleres<br>y Experiencias</span>
                     </a>
                 </div>
             </div>
@@ -433,8 +484,7 @@
                     <img src="assets/img/mercedes_2.jpeg?v=1.2" alt="Mercedes Saucedo"
                         data-content-attr="src:about_image"
                         class="w-full h-full object-cover transition-all duration-700 hover:scale-105"
-                        style="object-position: 28% center;"
-                        loading="lazy">
+                        style="object-position: 28% center;" loading="lazy">
                 </div>
             </div>
 
@@ -687,7 +737,10 @@
                 <div class="pt-4">
                     <button type="submit"
                         class="w-full bg-[#E7E7E7] border-2 border-primary text-primary py-4 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-lg hover:bg-primary hover:text-white group flex items-center justify-center gap-3 active:scale-95">
-                        <img src="assets/img/whatsapp_primary.png" alt="WhatsApp" class="w-6 h-6 object-contain group-hover:brightness-0 group-hover:invert transition-all">
+                        <svg class="w-6 h-6 fill-current transition-all" viewBox="0 0 24 24">
+                            <path
+                                d="M12.012 2c-5.508 0-9.988 4.48-9.988 9.988 0 1.76.46 3.48 1.332 4.988L2 22l5.232-1.372c1.45.792 3.084 1.212 4.756 1.212 5.508 0 9.988-4.48 9.988-9.988 0-2.67-1.04-5.18-2.92-7.06A9.914 9.914 0 0 0 12.012 2zm5.83 14.18c-.24.67-1.39 1.27-1.92 1.36-.53.09-1.21.15-3.17-.62-2.52-1.01-4.07-3.55-4.19-3.72-.12-.17-1.02-1.35-1.02-2.58 0-1.23.64-1.83.87-2.09.23-.26.5-.32.66-.32.16 0 .34 0 .48.01.16.01.35-.06.56.42.2.49.7 1.69.76 1.81.06.13.11.28.02.45-.08.17-.13.27-.25.43-.12.15-.26.33-.38.45-.12.12-.26.27-.11.51.14.24.62 1.02 1.33 1.66.91.82 1.68 1.07 1.93 1.19.25.12.39.1.54-.06.14-.17.62-.71.77-.96.16-.24.32-.2.56-.12.23.08 1.42.67 1.66.79.24.12.4.19.47.3.07.11.07.61-.17 1.3z" />
+                        </svg>
                         Enviar Consulta
                     </button>
                 </div>
