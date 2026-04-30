@@ -1,19 +1,28 @@
-# Coding Conventions
+# Coding Conventions — Landing Asesora MS v2.0
 
-Estándares de desarrollo para asegurar la coherencia en todos los módulos generados por la Software Factory.
+Estándares de desarrollo para mantener la coherencia en todo el sitio.
 
 ## Estilo de Código
-- **Nomenclatura**: Usar `snake_case` para nombres de archivos, variables y campos de base de datos.
-- **Idioma**: Todo el código de cara al usuario (UI) y comentarios explicativos deben estar en **Español**. Nombres de variables técnicos pueden ser en inglés si es el estándar de la librería.
-- **Indentación**: 4 espacios (o tabuladores consistentes con el archivo existente).
+- **Nomenclatura**: `snake_case` para nombres de archivos y carpetas. `camelCase` para variables JS.
+- **Idioma**: UI y comentarios en **Español**. Variables técnicas pueden ser en inglés.
+- **Indentación**: 4 espacios.
+- **Comillas**: Simples en JS, dobles en atributos HTML.
 
-## Arquitectura y Lógica
-- **Separación de Capas**: Separar la lógica de negocio (Serverless en `/api`) de la capa de presentación (HTML estático).
-- **Serverless First**: Toda lógica dinámica (DB, APIs externas como Drive) debe habitar en la carpeta `/api` como funciones independientes de Node.js.
-- **Seguridad**: Nunca exponer credenciales en el cliente. Usar `process.env` y secretos de Vercel.
-- **Validación de Datos**: Validar formatos de entrada en las funciones de la API antes de procesar solicitudes.
+## Arquitectura
+- **Serverless First**: Lógica dinámica (Drive API) únicamente en `/api/*.js` como funciones Node.js.
+- **Separación de capas**: No mezclar lógica de servidor en el HTML.
+- **Seguridad**: Nunca exponer credenciales en el cliente. Usar `process.env` + secretos de Vercel.
+- **Validación**: Validar formatos de entrada en las funciones de la API.
 
 ## UI / UX (Tailwind)
-- **Modo Oscuro/Claro**: Usar clases de Tailwind que soporten ambos modos.
-- **Componentes**: Reutilizar `partials/` para elementos comunes como modales, headers y footers.
-- **Feedback**: Usar SweetAlert2 o notificaciones Toast para confirmar acciones del usuario.
+- **Paleta**: Usar tokens definidos en la config de Tailwind (`primary`, `secondary`, `brandText`, `brandSubtext`).
+- **Variables CSS**: Consultar `styles/colores.css` antes de usar hex directos.
+- **Subplacas**: Todo listado en tarjetas blancas, `rounded-[1.5rem]`, `shadow-sm`.
+- **Componentes reutilizables**: Usar clases definidas en `styles/main.css` (glass-header, icon-mask, etc.).
+- **Feedback al usuario**: SweetAlert2 para confirmaciones y errores.
+- **Inline styles**: Prohibidos salvo excepciones justificadas (mask-image en SVG).
+
+## Configuración Centralizada
+- **Datos de marca**: `js/config.js` (teléfono, nombre, WhatsApp).
+- **Contenido editable**: `assets/content.md` (CMS estático).
+- **Variables de entorno**: Documentar en `.env.example`.

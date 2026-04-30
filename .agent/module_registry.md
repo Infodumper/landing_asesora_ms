@@ -1,108 +1,81 @@
-# Module Registry
+# Module Registry — Landing Asesora MS v2.0
 
-Este archivo define los módulos funcionales existentes en el sistema.
-
-Antes de crear un nuevo módulo, el agente debe consultar este registro
-para evitar duplicaciones.
+Módulos funcionales del sitio. Consultar antes de crear nuevas páginas para evitar duplicaciones.
 
 ---
 
-# Módulo: servicios
+## Módulo: Home
 
-Ubicación
+**Ubicación**: `index.html`
 
-admin/apps/servicios/
-
-Descripción
-
-Gestión centralizada de servicios, notas de trabajo y atención al cliente.
-
-Funciones principales
-
-- crear y listar notas de trabajo
-- atención premium (cumpleaños, fidelización)
-- agenda profesional
-
-Tablas asociadas
-
-notatrabajo  
-detallesnotatrabajo  
-servicios  
+**Componentes**:
+- Hero Carrusel Infinito (5 slides + 2 clones)
+- Ribbon de Servicios (7 iconos: Destacados, Asesoría, Talleres, Maquillaje, Glitter Bar, Joyas)
+- Productos Destacados (scroll horizontal + motor de carrito SB_Cart)
+- Sobre Mí (perfil + texto)
+- Testimonios (tarjetas horizontales scrollables)
+- Formulario de Contacto (envía a WhatsApp)
+- Footer (contacto + redes + Kaizuna)
 
 ---
 
-# Módulo: stock
+## Módulo: Asesoría de Imagen
 
-Ubicación
+**Ubicación**: `asesoria-imagen/index.html`
 
-admin/apps/stock/
-
-Descripción
-
-Gestión de inventario de productos.
-
-Funciones principales
-
-- visualizar productos
-- actualizar stock
-- importar productos
+**Función**: Presentación de servicios de asesoría de imagen personalizada.
 
 ---
 
-# Módulo: pedidos
+## Módulo: Talleres y Experiencias
 
-Ubicación
+**Ubicación**: `talleres-experiencias/index.html`
 
-admin/apps/pedidos/
-
-Descripción
-
-Gestión de pedidos realizados por clientes.
-
-Funciones principales
-
-- crear pedido
-- listar pedidos
+**Función**: Información sobre workshops, eventos formativos y experiencias grupales.
 
 ---
 
-# Módulo: clientes
+## Módulo: Maquillaje
 
-Ubicación
+**Ubicación**: `maquillaje/index.html`
 
-admin/apps/clientes/
+**Función**: Servicios de maquillaje social y artístico.
 
-Descripción
-
-Gestiona la base de clientes del sistema. (Módulo ahora en última posición del dashboard).
-
-Funciones principales
-
-- listar y editar clientes
-- importar clientes
-- visualizar ficha de cliente
-
+**Subsecciones**:
+- Maquillaje Social
+- Maquillaje Artístico
+- **Glitter Bar** (ancla: `#glitter-bar`)
 
 ---
 
-# Módulo: sql_tools
+## Módulo: Joyas y Semijoyas
 
-Ubicación
+**Ubicación**: `joyas/index.html`
 
-admin/apps/sql/
+**Función**: Catálogo Perla Negra + sección de incorporación para emprendedoras.
 
-Descripción
+**Subsecciones**:
+- Catálogo de joyas (PDF viewer)
+- Sumarse al equipo (ancla: `#sumate`)
 
-Herramientas de administración de base de datos.
+---
 
-Funciones
+## Módulo: Productos de Belleza
 
-- ejecutar consultas SQL
-- visualizar tablas
-- inspeccionar estructura de base de datos
+**Ubicación**: `productos-belleza/index.html`
 
-Archivos principales
+**Función**: Visor de catálogos multimarca cargados desde Google Drive.
 
-conexion.php  
-consulta.php  
-ver_tabla.php
+**Marcas**: Natura, Avon, Mary Kay, Bagués, Millanel.
+
+**Integración**: `api/get-catalogs.js` filtra PDFs por nombre de marca.
+
+---
+
+## Módulo: Login
+
+**Ubicación**: `login.html`
+
+**Estado**: Placeholder. Autenticación temporal en frontend (NO producción).
+
+**Nota**: Este módulo NO tiene backend real. Es un prototipo visual.

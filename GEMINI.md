@@ -1,93 +1,40 @@
-# Arquitectura y Estándares de Sistema – "Gestion SB"
+# Instrucciones para Gemini — Landing Asesora MS v2.0
 
-> Este documento contiene los protocolos técnicos y de arquitectura. Aplica a todo entorno de orquestación de agentes y a los pipelines de desarrollo automatizado (CLAUDE, GEMINI, etc).
+> Extensión del documento maestro `AGENTS.md`. Leer primero ese archivo para contexto completo.
 
-## 1. Alcance Operativo
+## Contexto Rápido
 
-El entorno "Gestion SB" opera bajo un modelo de ingeniería automatizada para la construcción de plataformas digitales. Los productos resultantes deben cumplir estrictamente con los estándares de nivel de producción, garantizando alta disponibilidad, mantenibilidad arquitectónica, rendimiento óptimo en despliegue y adherencia a los lineamientos UI/UX corporativos.
+Este proyecto es una **landing page estática** para Mercedes Saucedo (MS Bellass), desplegada en **Vercel**. No hay backend PHP, no hay base de datos, no hay panel administrativo.
 
-## 2. Arquitectura de 4 Capas
+**Stack**: HTML + Tailwind CSS (CDN) + JS Vanilla + Vercel Serverless (Node.js) + Google Drive API.
 
-El ecosistema opera sobre una topología de cuatro capas, definidas para garantizar el determinismo, la observabilidad y el control absoluto del código:
+## Prioridades de Gemini
 
-### Capa 1: Gestión de Directivas (Reglas de Negocio)
-- Especificaciones Técnicas y Procedimientos Estándar de Operación (SOP) alojados en `/directives/`.
-- Definen requerimientos, integraciones, parámetros de entrada/salida y dependencias lógicas.
-- Inmutables durante la ejecución, rigen el comportamiento técnico del producto.
+1. **Antes de tocar código**: Leer `AGENTS.md` y la directiva correspondiente en `/directives/`.
+2. **Estilos**: Siempre consultar `styles/colores.css` antes de usar colores hex directos.
+3. **Configuración**: Datos de contacto y marca viven en `js/config.js`. No hardcodear.
+4. **Contenido**: El sistema CMS usa `assets/content.md` + `js/ui-sync.js`. Priorizar ese flujo.
+5. **Idioma**: La UI debe estar en español rioplatense. Variables técnicas pueden ser en inglés.
 
-### Capa 2: Orquestación (Procesamiento Lógico)
-- Módulo encargado de la coordinación y sincronización de servicios.
-- Reglas de validación y prelación:
-  1. Análisis de estado y flujos de trabajo preexistentes localmente.
-  2. Implementación basada estrictamente en requerimientos de Directiva.
-  3. Ejecución asíncrona de procesos paralelos.
+## Skills Disponibles
 
-### Capa 3: Ejecución de Servicios
-- Segmento operativo del código desplegado (e.g., `execution/`).
-- Obligatoriedad estandarizada:
-  - Todo script, proceso automático y módulo interactivo de servidor debe incorporar manejo centralizado de configuraciones secretas (`.env`).
-  - Implementación imperativa del módulo `utils/logger.py` mediante telemetría detallada.
+| Skill | Cuándo usarla |
+|:---|:---|
+| `page_builder` | Crear o modificar páginas HTML |
+| `style_manager` | Cambios de colores, tipografías, componentes CSS |
+| `carousel_manager` | Modificar el carrusel del Hero (5 slides, clones, dots) |
+| `catalog_integrator` | Problemas con la API de Google Drive |
+| `content_sync` | Actualizar textos via el CMS Markdown |
+| `config_manager` | Cambios de teléfono, nombre, redes sociales |
+| `deploy_auditor` | Verificación post-deploy |
 
-### Capa 4: Observabilidad de la Plataforma
-- Visibilidad del backend mediante un nodo de monitoreo dedicado (`dashboard/app.py`).
-- Audita rendimiento, transacciones, latencias de despliegue y el estado de bases de datos locales (`logs/gestion_sb.db`).
+## Reglas Críticas
 
-## 3. Estándares Técnicos Frontend (Infraestructura Móvil)
-
-Todo módulo del ecosistema debe converger obligatoriamente hacia las normativas estandarizadas de frontend y acceso remoto:
-
-### 3.1. Estructura y Rendering
-- **Arquitectura de Placas Independientes de Información**: Modelo de interfaz estandarizado con distribución en contenedores maestros ("Placas Maestras") y listados funcionales ("Subplacas" o placas de información).
-- **Regla de las Subplacas**: Está terminantemente prohibido mostrar datos sueltos o texto flotante en los listados. Cada entidad (Cliente, Producto, Venta, etc.) debe habitar dentro de su propia "Subplaca": una tarjeta blanca (`bg-white`), con bordes redondeados (`rounded-[1.5rem]`), sombra suave (`shadow-sm`) y efectos de hover suaves.
-- **Hojas de Estilo Globales**: Centralización estricta (`colores.css`). Está prohibido explícitamente el uso de "inline styles", reglas flotantes sueltas y declaración de componentes con clases CSS redundantes no globalizadas.
-- **UX en Móviles**: Implementación reglamentaria de paneles de navegación inferior (Bottom Navbars), áreas táctiles optimizadas y soporte integral Claro/Oscuro. Empleo prioritario de **Tailwind CSS**.
-- **Regla de la "X" (Cierre)**: Se establece el estándar de un solo botón de cierre visible. En vistas principales y módulos integrados, la "X" debe ubicarse únicamente en la zona inferior (Bottom Navbar o acción persistente). Solo las ventanas secundarias de tipo **pop-up o modales** deben incorporar el botón "X" en la cinta del título (encabezado superior derecho del contenedor).
-
-### 3.2. Localización y Refactorización
-- Idioma de despliegue, documentación de la UI y variables de salida debe encontrarse puramente en idioma español. Nomenclatura base de sistemas anglosajona admitida únicamente en la sintaxis profunda del código.
-- Los prototipos técnicos aislados deben ensamblarse y validarse bajo el flujo de código como sistemas productivos limpios y listos para escalar operativamente.
-
-## 4. Prácticas de Ingeniería Central
-
-1. **Reutilización Preventiva**: Obligación de escanear y estudiar infraestructura previa (`/execution/`, `/directives/`) previo a cualquier scaffolding de código.
-2. **Telemetría Mandatoria**: El despliegue de módulos al entorno debe contener validaciones de traza de errores detalladas. El despliegue silencioso (un-logged) se considera como subestándar.
-3. **Mecanismos de Resiliencia Automática**: Frente a cualquier interrupción técnica, el flujo de fallos requiere la extracción de stack trace, parche en caliente de la base de código y relanzamiento automático del servicio.
-
-## 5. Árbol Estructural Crítico
-
-- `.tmp/`: Procesos e inyecciones dinámicas provisionales.
-- `execution/`: Alojamiento de servicios de lógica primaria.
-- `directives/`: Especificaciones del núcleo arquitectural y normativas.
-- `logs/`: Persistencia de métricas y volcado de auditoría en Base de Datos.
-- `dashboard/`: Entorno visual para telemetría.
-- `utils/`: Módulos de soporte subyacente de uso constante.
-- `.agent/workflows/`: Pipelines continuos o rutinas paramétricas de desarrollo continuo.
-
-## 6. Módulos y Skills del Ecosistema
-
-La infraestructura backend se gestiona mediante componentes especializados ("Skills") que garantizan la modularidad:
-
-- **catalog_manager**: Orquestador transaccional (CRUD), gestión de catálogos dinámicos vía Google Drive API y validación de datos.
-- **login_manager**: Gestión de autenticación biométrica, JWT/SESION y seguridad sin recarga de vistas.
-- **menu_navigator**: Controlador de estado SPA y ruteo dinámico para interfaces Mobile-first (Bottom Navbar).
-- **sales_manager**: Gestión de procesos de venta, carritos y pedidos.
-- **premium_attention**: Automatización de fidelización y difusión vía WhatsApp.
+- **Subplacas**: Todo listado debe estar en tarjetas blancas con `rounded-[1.5rem]`, `shadow-sm`.
+- **Inline Styles**: Prohibidos. Usar variables CSS o clases Tailwind.
+- **SEO**: Un `<h1>` por página. Meta descriptions obligatorias.
+- **Imágenes**: `loading="lazy"` excepto Hero.
 
 ---
 
-```json
-{
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp",
-        "--api-key",
-        "TU API KEY"
-      ],
-      "env": {}
-    }
-  }
-}
-```
+© 2026 Kaizuna — Gestion SB Standard v2.0

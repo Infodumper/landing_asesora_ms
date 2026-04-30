@@ -1,70 +1,74 @@
-# Skills Registry
+# Skills Registry — Landing Asesora MS v2.0
 
-Este archivo define las capacidades disponibles para los agentes dentro del proyecto. Los agentes deben consultar este registro antes de ejecutar cualquier acción.
-
----
-
-# Skill: create_module
-**Descripción**: Crear un nuevo módulo dentro del panel administrativo.  
-**Cuándo usar**: Cuando se solicite una nueva funcionalidad del sistema.  
-**Entrada**: nombre del módulo.  
-**Salida**: carpeta en `admin/apps/<modulo>/`.  
-**Directiva asociada**: `directives/create_module.md`
+Skills disponibles para los agentes dentro de este proyecto. Consultar este registro antes de ejecutar cualquier acción.
 
 ---
 
-# Skill: manage_clients
-**Descripción**: Gestión integral de la base de clientes.  
-**Funciones**:
-- Listado premium con búsqueda y ordenación.
-- Alta y Edición mediante modales/partials.
-- Visualización de "Ficha de Cliente" con historial de ventas.
-- Importación de datos.  
-**Directiva asociada**: `directives/build_clientes.md`  
-**Ubicación**: `admin/apps/clientes/`
+## Skill: page_builder
+**Descripción**: Crear o modificar páginas HTML del sitio.
+**Cuándo usar**: Cuando se solicite una nueva sección, página, o cambio estructural en el HTML.
+**Entrada**: Requerimiento del usuario + directiva correspondiente.
+**Salida**: Archivo HTML en la subcarpeta correspondiente o modificación de `index.html`.
+**Directivas asociadas**: `directives/build_system.md`, `directives/build_*.md`
+**Restricciones**:
+- Respetar la Regla de las Subplacas.
+- Mantener un solo `<h1>` por página.
+- Usar Tailwind CSS, nunca inline styles.
 
 ---
 
-# Skill: manage_atencion
-**Descripción**: Fidelización y atención premium al cliente.  
-**Funciones**:
-- Seguimiento de cumpleaños del mes.
-- Identificación de clientes frecuentes (VIP).
-- Gestión de listas de difusión móviles.
-- Integración directa con WhatsApp.  
-**Directiva asociada**: `directives/build_atencion.md`  
-**Ubicación**: `admin/apps/clientes/atencion_cliente.php`
+## Skill: style_manager
+**Descripción**: Gestionar paleta de colores, tipografías y componentes CSS globales.
+**Cuándo usar**: Cuando el usuario solicite cambios visuales (colores, fuentes, sombras, efectos).
+**Archivos clave**: `styles/colores.css`, `styles/main.css`
+**Workflow**: `.agent/workflows/fix_styles.md`
+**Restricciones**:
+- Verificar `colores.css` antes de usar hex directos.
+- Extender Tailwind config en el `<head>` si se necesitan nuevas utilidades.
 
 ---
 
-# Skill: manage_sales
-**Descripción**: Gestión del ciclo de venta y pedidos.  
-**Funciones**:
-- Toma de pedidos dinámica.
-- Historial de ventas integrado.
-- Sincronización con stock.  
-**Directiva asociada**: `directives/build_ventas.md`  
-**Ubicación**: `admin/apps/ventas/`
+## Skill: carousel_manager
+**Descripción**: Mantener el carrusel infinito del Hero.
+**Cuándo usar**: Agregar/quitar slides, ajustar timing, corregir bugs de navegación.
+**Archivos clave**: `index.html` (sección Hero + script inline del carrusel)
+**Parámetros actuales**:
+- 5 slides reales (0-4) + 2 clones para loop infinito.
+- TOTAL = 5.
+- Timer de autoplay: 8000ms.
+- Transición: 0.7s cubic-bezier.
 
 ---
 
-# Skill: manage_stock
-**Descripción**: Gestión de inventario de productos.  
-**Cuándo usar**: Consultar stock, actualizar productos, importar productos.  
-**Directiva asociada**: `directives/build_stock.md`  
-**Ubicación**: `admin/apps/stock/`
+## Skill: catalog_integrator
+**Descripción**: Configurar y mantener la integración con Google Drive.
+**Cuándo usar**: Problemas con carga de catálogos, nuevas categorías, cambios en carpetas de Drive.
+**Archivos clave**: `api/get-catalogs.js`, `.env.example`
+**Directiva**: `directives/setup_drive.md`
+**Variables de entorno**:
+- `GOOGLE_DRIVE_FOLDER_ID`
+- `GOOGLE_SERVICE_ACCOUNT_JSON`
 
 ---
 
-# Skill: run_sql_query
-**Descripción**: Ejecutar consultas SQL para diagnóstico.  
-**Advertencia**: No ejecutar operaciones destructivas sin aprobación humana.  
-**Directiva asociada**: `directives/build_sql_tools.md`  
-**Ubicación**: `admin/apps/sql/`
+## Skill: content_sync
+**Descripción**: Gestionar el sistema de contenido dinámico via Markdown.
+**Cuándo usar**: Actualizar textos de la UI sin tocar el HTML directamente.
+**Archivos clave**: `assets/content.md`, `js/ui-sync.js`
+**Flujo**: Editar `content.md` → `ui-sync.js` parsea los bloques `## clave` → inyecta en `data-content`.
 
 ---
 
-# Skill: system_maintenance
-**Descripción**: Tareas de mantenimiento (backups, diagnóstico, limpieza).  
-**Directiva asociada**: `directives/build_system_tools.md`  
-**Ubicación**: raíz del sistema
+## Skill: config_manager
+**Descripción**: Administrar configuración centralizada de marca y contacto.
+**Cuándo usar**: Cambio de teléfono, nombre de marca, links de redes sociales.
+**Archivos clave**: `js/config.js`
+**Nota**: Los datos de `config.js` se aplican automáticamente a elementos con `data-config` y `data-config-attr`.
+
+---
+
+## Skill: deploy_auditor
+**Descripción**: Validar integridad del sitio post-despliegue.
+**Cuándo usar**: Después de un deploy significativo o cuando algo se vea roto en producción.
+**Workflow**: `.agent/workflows/audit_deploy.md`
+**Checks**: SEO (h1 duplicados, meta), APIs (Drive), estilos (colores.css).

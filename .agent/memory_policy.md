@@ -1,21 +1,21 @@
-# Memory Policy (Engram)
+# Memory Policy (Engram) — Landing Asesora MS v2.0
 
-Reglas para el uso de la memoria persistente para evitar el caos y mantener un contexto de alta calidad.
+Reglas para el uso de memoria persistente. Mantener un contexto de alta calidad entre sesiones.
 
 ## Qué Guardar (Prioridad Alta)
-- **Decisiones de Arquitectura**: Por qué se eligió una estructura o tecnología específica.
-- **Módulos Creados**: Fecha de creación, propósito central y archivos clave.
-- **Patrones Reutilizables**: Formas estándar de resolver problemas comunes (ej. modales, validación de DNI).
-- **Errores Detectados (Bugfixes)**: Qué falló, por qué, y cómo se arregló para no repetirlo.
-- **Preferencias del Usuario**: Estilos visuales, idiomas, o formas de trabajo específicas.
+- **Decisiones de Diseño**: Por qué se eligió una paleta, una tipografía o un layout específico.
+- **Bugfixes**: Qué falló, por qué, y cómo se arregló (ej: carrusel, iconos, responsive).
+- **Patrones**: Formas estándar de resolver problemas (ej: Subplacas, CMS Markdown, icon-mask).
+- **Configuración**: Cambios en `config.js`, variables de entorno, integraciones.
+- **Preferencias del Usuario**: Estilos visuales, idioma, formas de trabajo.
 
 ## Qué NO Guardar
-- **Prompts Temporales**: Consultas de "cómo se hace X" que no resultan en cambios permanentes.
-- **Logs de Depuración**: Salidas de terminal o errores de sintaxis que se corrigen en el momento.
-- **Pruebas Ad-hoc**: Scripts creados en `.tmp/` para validaciones rápidas de una sola vez.
+- **Prompts temporales**: Consultas exploratorias sin cambios permanentes.
+- **Errores de sintaxis**: Typos que se corrigen en el momento.
+- **Scripts de prueba**: Archivos en `scratch/` para validaciones rápidas.
 
 ## Formato Obligatorio
-Siempre usar el formato de `mem_save`:
+Usar el formato de `mem_save`:
 - **What**: Qué se hizo.
 - **Why**: Por qué (motivo técnico o pedido de usuario).
 - **Where**: Archivos afectados.

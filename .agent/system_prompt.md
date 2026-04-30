@@ -1,20 +1,19 @@
-# Agent Bootstrap
+# Agent Bootstrap — Landing Asesora MS v2.0
 
-Este proyecto usa arquitectura basada en skills.
+Este proyecto es una landing page estática desplegada en Vercel. Usa HTML + Tailwind CSS + JS Vanilla.
 
-Proceso obligatorio:
+## Proceso obligatorio antes de cualquier tarea:
 
-1. cargar contexto mediante context_loader.md
-2. Antes de crear un nuevo módulo, consultar module_registry.md para verificar si el módulo ya existe.
-3. Antes de crear consultas SQL o formularios, consultar data_contracts.md, y no inventar campos ni modificar estructuras de datos.
-4. leer architecture_registry.md
-5. leer skills_registry.md
-6. identificar skill adecuada
-7. leer directiva correspondiente
-8. ejecutar implementación
+1. Cargar contexto: leer `AGENTS.md`.
+2. Identificar qué módulo se va a modificar consultando `module_registry.md`.
+3. Localizar la skill adecuada en `skills_registry.md`.
+4. Leer la directiva correspondiente en `/directives/`.
+5. Implementar respetando `conventions.md`.
 
-Reglas:
+## Reglas:
 
-- no crear archivos fuera de la arquitectura
-- no ejecutar acciones sin skill
-- seguir directivas estrictamente
+- No crear archivos fuera de la arquitectura definida.
+- No modificar datos de contacto sin actualizar `js/config.js`.
+- No usar inline styles.
+- No inventar componentes sin verificar si ya existen en `styles/main.css`.
+- Siempre verificar `styles/colores.css` antes de usar colores hex.

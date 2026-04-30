@@ -1,39 +1,50 @@
-# Directiva: build_system.md (Módulo: Landing Interface)
+# Directiva: build_system.md — Módulo Home (Landing Principal)
 
-Esta directiva rige la construcción y mantenimiento de la página principal (Landing Page) del ecosistema "Gestion SB".
+Rige la construcción y mantenimiento de `index.html`.
 
-## 1. Objetivo Operativo
-Proveer una interfaz de entrada de alto impacto visual, optimizada para dispositivos móviles, que centralice el acceso a las líneas de negocio de la consultora Stefanía Barroso.
+## 1. Objetivo
+
+Proveer una interfaz de alto impacto visual, optimizada para móviles, que centralice el acceso a todas las líneas de negocio de Mercedes Saucedo.
 
 ## 2. Componentes Críticos
 
-### 2.1. Hero Carousel (Skill: catalog_manager)
-- **Origen de datos**: Carpeta principal en Google Drive.
-- **Lógica**: Carga imágenes cuyo nombre contenga la palabra "carousel" (ej: `carousel-1.jpg`).
-- **Comportamiento**: Rotación automática, soporte para swipe táctil y navegación por puntos (dots).
+### 2.1. Hero Carrusel Infinito (Skill: carousel_manager)
+- **Estructura**: 5 slides reales (0-4) + 2 clones para loop infinito.
+- **Slides actuales**:
+  - 0: Genérico (bienvenida) → `#servicios`
+  - 1: Asesoría de Imagen → `asesoria-imagen/`
+  - 2: Talleres y Experiencias → `talleres-experiencias/`
+  - 3: Maquillaje → `maquillaje/`
+  - 4: Joyas y Semijoyas → `joyas/` + `joyas/#sumate`
+- **Parámetros**: TOTAL=5, autoplay 8s, transición 0.7s cubic-bezier.
+- **Imágenes**: Locales en `assets/img/portada/carousel_N.jpeg`. Con fallback dinámico desde Drive.
 
-### 2.2. Ribbon de Navegación (Skin: menu_navigator)
-- **Estructura**: Cinta horizontal con 5 botones circulares.
+### 2.2. Ribbon de Servicios (Skill: page_builder)
+- **Estructura**: Cinta horizontal con 7 botones circulares, scroll infinito con clones.
 - **Estándar Visual**:
-  - Contenedor: `bg-[#F3F4F6]`, `rounded-full`, sombra suave.
-  - Iconos: PNGs transparentes colorizados en `#00a876` extraídos de assets locales.
-  - Hover: Elevación visual (`-translate-y-1`) y aumento de sombra.
-- **Destinos**:
-  1. **Promos**: `#productos` (anclaje interno).
-  2. **Belleza**: `productos-belleza/` (SPA-like navigation).
-  3. **Joyas**: `joyas/`.
-  4. **Maquillaje**: `maquillaje/`.
-  5. **Peluquería**: `maquillaje/#peluqueria`.
+  - Contenedor: `bg-[#F3F4F6]`, `rounded-full`, sombra soft-shadow.
+  - Iconos: PNGs transparentes con `icon-mask` en `--icons-primary`.
+  - Hover: Elevación (`-translate-y-1`) + aumento de sombra.
+- **Items actuales**:
+  1. **Destacados** → `#productos`
+  2. **Asesoría de Imagen** → `asesoria-imagen/`
+  3. **Talleres y Experiencias** → `talleres-experiencias/`
+  4. **Maquillaje** → `maquillaje/`
+  5. **Glitter Bar** → `maquillaje/#glitter-bar` (icono SVG con máscara especial)
+  6. **Joyas y Semijoyas** → `joyas/`
 
-### 2.3. Sistema de Promociones
-- Listado horizontal scrollable (`snap-x`) para productos destacados.
+### 2.3. Productos Destacados (Skill: page_builder)
+- Scroll horizontal con `snap-x snap-mandatory`.
+- Motor de carrito `SB_Cart` con persistencia en localStorage.
+- Envío de pedido via WhatsApp.
 
-## 3. Telemetría y Logs
-- Todo error en la carga de catálogos dinámicos debe advertirse en consola con el prefijo `[DRIVE API]`.
-- Se requiere fallback a imágenes locales (`assets/img/`) en caso de fallo de red.
+### 2.4. Sobre Mí / Testimonios / Contacto
+- Formulario de contacto envía a WhatsApp con datos estructurados.
+- Testimonios en tarjetas horizontales scrollables.
+
+## 3. Telemetría
+- `SB_Telemetry` registra interacciones y errores en consola.
+- Errores de Drive API con prefijo `[DRIVE]`.
 
 ---
-**Skills Asociadas:** 
-- `menu_navigator`: Orquestador SPA y ruteo circular.
-- `catalog_manager`: Gestión de assets desde Drive.
-- `app_orchestrator`: Gestión de estados de visor y scroll.
+**Skills Asociadas**: `carousel_manager`, `page_builder`, `content_sync`, `config_manager`

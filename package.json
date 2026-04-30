@@ -1,26 +1,28 @@
 {
-  "name": "landing-gestion-sb",
-  "version": "1.0.0",
-  "description": "MS Bellass - Mercedes Saucedo Landing Page",
+  "name": "landing-asesora-ms",
+  "version": "2.0.0",
+  "description": "Mercedes Saucedo - Asesora de Imagen | Landing Page",
   "scripts": {
     "dev": "npx http-server -p 3000",
     "test": "echo \"No tests configured\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Infodumper/landing_gestion_sb.git"
+    "url": "git+https://github.com/Infodumper/landing_asesora_ms.git"
   },
   "keywords": [
     "landing",
     "beauty",
-    "consultora"
+    "consultora",
+    "asesora",
+    "imagen"
   ],
   "author": "Mercedes Saucedo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Infodumper/landing_gestion_sb/issues"
+    "url": "https://github.com/Infodumper/landing_asesora_ms/issues"
   },
-  "homepage": "https://github.com/Infodumper/landing_gestion_sb#readme",
+  "homepage": "https://github.com/Infodumper/landing_asesora_ms#readme",
   "dependencies": {
     "@vercel/speed-insights": "^2.0.0",
     "googleapis": "^171.4.0"
