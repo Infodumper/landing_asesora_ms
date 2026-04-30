@@ -15,11 +15,11 @@ Texto: <span class="font-brand text-[1.6rem] md:text-[2.4rem] align-middle">MS</
 
 ## hero_slide0_title
 Indicación: Título del slide genérico.
-Texto: Título genérico <br> <span class="text-secondary">Subtítulo</span>
+Texto: Tu imagen habla antes que vos <br> <span class="text-secondary">Aprendé a usarla a tu favor</span>
 
 ## hero_slide0_desc
 Indicación: Texto descriptivo del slide genérico.
-Texto: Texto descriptivo genérico.
+Texto: En MS Bellass ayudamos a mujeres a descubrir su estilo, potenciar su presencia y verse seguras en cada paso.
 
 ## hero_slide1_title
 Indicación: Título del primer slide del carrusel.
