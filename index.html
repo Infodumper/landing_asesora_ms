@@ -887,7 +887,7 @@
             const dots = document.querySelectorAll('.carousel-dot');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-            const TOTAL = 4;
+            const TOTAL = 5;
             let current = 1;
             let busy = false;
             let autoTimer;
@@ -896,7 +896,7 @@
                 track.style.transition = instant ? 'none' : 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
                 track.style.transform = `translateX(-${idx * 100}%)`;
                 // Actualizar dots (mapeo correcto)
-                const dotIdx = idx === 0 ? 3 : idx > TOTAL ? 0 : idx - 1;
+                const dotIdx = idx === 0 ? TOTAL - 1 : idx > TOTAL ? 0 : idx - 1;
                 dots.forEach((d, i) => {
                     d.classList.toggle('bg-white', i === dotIdx);
                     d.classList.toggle('bg-white/40', i !== dotIdx);
