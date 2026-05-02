@@ -197,7 +197,7 @@ Texto: CÓD. CA1500R18
 
 ## product2_name
 Indicación: Nombre del segundo producto.
-Texto: Cadena de bolitas aleación oro 14
+Texto: Cadena-pulsera aleación oro 14
 
 ## product2_price
 Indicación: Precio del segundo producto.
