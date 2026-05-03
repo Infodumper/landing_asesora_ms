@@ -100,6 +100,14 @@
 
             <!-- Acciones Móviles -->
             <div class="flex items-center space-x-1 md:space-x-5 justify-end shrink-0">
+                <button id="cart-btn" class="text-brandText hover:text-primary p-1 md:p-2 transition-colors relative flex items-center" title="Ver Carrito">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                </button>
                 <a href="login.html" id="btn-acceso"
                     class="text-brandText hover:text-primary p-1 md:p-2 transition-colors" title="Acceso al Panel">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -830,17 +838,6 @@
         <img src="assets/img/whatsapp_2.png" alt="WhatsApp" class="relative w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl">
     </a>
 
-    <!-- Botón Flotante Carrito -->
-    <button id="cart-btn"
-        class="fixed bottom-6 right-6 z-[90] bg-primary text-white p-4 rounded-full shadow-2xl hover:bg-brandText transition-all transform hover:scale-105 active:scale-95 hidden items-center justify-center gap-2 group">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-        <span id="cart-count"
-            class="bg-secondary text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full -mt-2">0</span>
-        <span class="hidden group-hover:block ml-2 text-xs font-bold uppercase tracking-widest">Ver Pedido</span>
-    </button>
 
 
     <!-- ══════════════════════════════════════════
@@ -1009,122 +1006,8 @@
         };
         SB_Telemetry.init();
 
-        // ─── Motor de Carrito ─────────────────────────────────────
-        const SB_Cart = {
-            KEY: 'sb_cart_v1',
-            items: [],
-
-            init() {
-                const saved = localStorage.getItem(this.KEY);
-                this.items = saved ? JSON.parse(saved) : [];
-                this.bindEvents();
-                this.updateUI();
-            },
-
-            persist() { localStorage.setItem(this.KEY, JSON.stringify(this.items)); },
-
-            bindEvents() {
-                document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                    btn.addEventListener('click', e => {
-                        const card = e.target.closest('.product-card');
-                        this.add({
-                            name: card.dataset.name,
-                            code: card.dataset.code,
-                            price: parseInt(card.dataset.price),
-                            qty: 1
-                        });
-                    });
-                });
-                document.getElementById('cart-btn').addEventListener('click', () => this.showPreview());
-            },
-
-            add(product) {
-                const existing = this.items.find(i => i.code === product.code);
-                if (existing) existing.qty++;
-                else this.items.push(product);
-                this.persist();
-                this.updateUI();
-                Swal.fire({
-                    toast: true, position: 'top-end', icon: 'success',
-                    title: `¡Añadido: ${product.name}!`,
-                    showConfirmButton: false, timer: 2000, timerProgressBar: true
-                });
-            },
-
-            updateUI() {
-                const count = this.items.reduce((a, i) => a + i.qty, 0);
-                const btn = document.getElementById('cart-btn');
-                document.getElementById('cart-count').innerText = count;
-
-                document.querySelectorAll('.product-card').forEach(card => {
-                    const inCart = this.items.some(i => i.code === card.dataset.code);
-                    card.classList.toggle('product-in-cart', inCart);
-                    const b = card.querySelector('.add-to-cart-btn');
-                    if (b) b.innerText = inCart ? 'En Carrito' : 'Comprar';
-                });
-
-                btn.classList.toggle('hidden', count === 0);
-                btn.classList.toggle('flex', count > 0);
-            },
-
-            showPreview() {
-                let html = `<div class="text-left text-sm max-h-[40vh] overflow-y-auto px-2"><table class="w-full"><thead class="border-b border-gray-100 italic text-brandText/60 text-[10px] uppercase"><tr><th class="py-2 text-left">Producto</th><th class="py-2 text-center">Cant.</th><th class="py-2 text-right">Subtotal</th></tr></thead><tbody class="divide-y divide-gray-50 uppercase text-[11px] font-bold">`;
-                let total = 0;
-                this.items.forEach(item => {
-                    const sub = item.price * item.qty;
-                    total += sub;
-                    html += `<tr><td class="py-3">${item.name} <br><span class="text-[9px] text-gray-400">CÓD. ${item.code}</span></td><td class="py-3 text-center">${item.qty}</td><td class="py-3 text-right">$ ${sub.toLocaleString('es-AR')}</td></tr>`;
-                });
-                html += `</tbody></table></div><div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center px-2"><span class="font-black text-brandText uppercase tracking-widest">Total:</span><span class="text-xl font-black text-primary">$ ${total.toLocaleString('es-AR')}</span></div>`;
-
-                Swal.fire({
-                    title: 'Tu Pedido', html,
-                    showCancelButton: true,
-                    confirmButtonText: 'Enviar por WhatsApp',
-                    cancelButtonText: 'Vaciar Carrito',
-                    confirmButtonColor: '#25D366',
-                    cancelButtonColor: '#ff4b2b',
-                    reverseButtons: true,
-                    background: '#fff', color: '#064e3b', width: '95%',
-                    customClass: {
-                        popup: 'rounded-[2rem]',
-                        confirmButton: 'rounded-full px-8 py-3 font-bold',
-                        cancelButton: 'rounded-full px-8 py-3 font-bold'
-                    }
-                }).then(r => {
-                    if (r.isConfirmed) this.sendWhatsApp();
-                    if (r.dismiss === Swal.DismissReason.cancel) this.clear();
-                });
-            },
-
-            sendWhatsApp() {
-                let msg = `Hola Mercedes! Quisiera realizar el siguiente pedido por la web:\n\n`;
-                let total = 0;
-                this.items.forEach(i => {
-                    const sub = i.price * i.qty;
-                    total += sub;
-                    msg += `- *${i.qty}x* ${i.name} (Cód: ${i.code}) — $${sub.toLocaleString('es-AR')}\n`;
-                });
-                msg += `\nTOTAL: $${total.toLocaleString('es-AR')}\n\n¿Me podés confirmar disponibilidad? ¡Gracias!`;
-                window.open(`https://wa.me/5492233453279?text=${encodeURIComponent(msg)}`, '_blank');
-            },
-
-            clear() {
-                this.items = [];
-                this.persist();
-                this.updateUI();
-                Swal.fire('¡Carrito Vacío!', '', 'info');
-            }
-        };
-
-        // Init del carrito cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                SB_Cart.init();
-            });
-        } else {
-            SB_Cart.init();
-        }
+    <!-- Motor de Carrito -->
+    <script src="js/cart.js"></script>
 
         // ─── Función de Contacto WhatsApp ────────────────────────
         function sendWhatsAppContact() {
