@@ -4,7 +4,7 @@
   "description": "Mercedes Saucedo - Asesora de Imagen | Landing Page",
   "scripts": {
     "dev": "npx http-server -p 3000",
-    "test": "echo \"No tests configured\" && exit 0"
+    "test": "node scripts/validate-html.js"
   },
   "repository": {
     "type": "git",
