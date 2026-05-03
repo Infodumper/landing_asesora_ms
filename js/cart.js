@@ -12,37 +12,51 @@ const SB_Cart = {
         this.items = saved ? JSON.parse(saved) : [];
         this.bindEvents();
         this.updateUI();
+        // Re-sincronizar después de que ui-sync.js haya terminado
+        setTimeout(() => this.updateUI(), 500);
+        setTimeout(() => this.updateUI(), 1500);
     },
 
     persist() { localStorage.setItem(this.KEY, JSON.stringify(this.items)); },
 
     bindEvents() {
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', e => {
-                const card = e.target.closest('.product-card');
-                if (!card) return;
-                this.add({
-                    name: card.dataset.name,
-                    code: card.dataset.code,
-                    price: parseInt(card.dataset.price),
-                    qty: 1
-                });
+        // Delegación de eventos para botones de "Añadir al carrito"
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.add-to-cart-btn');
+            if (!btn) return;
+            
+            const card = btn.closest('.product-card');
+            if (!card) return;
+            
+            this.add({
+                name: card.getAttribute('data-name'),
+                code: card.getAttribute('data-code'),
+                price: parseInt(card.getAttribute('data-price')),
+                qty: 1
             });
         });
-        const cartBtn = document.getElementById('cart-btn');
-        if (cartBtn) {
-            cartBtn.addEventListener('click', () => this.showPreview());
-        }
+
+        // Evento para abrir el carrito
+        // Usamos delegación también por si el header se recarga
+        document.addEventListener('click', e => {
+            if (e.target.closest('#cart-btn')) {
+                this.showPreview();
+            }
+        });
     },
 
     add(product) {
+        if (!product.code || isNaN(product.price)) {
+            console.warn('[SB_CART] Producto inválido:', product);
+            return;
+        }
+
         const existing = this.items.find(i => i.code === product.code);
         if (existing) existing.qty++;
         else this.items.push(product);
         this.persist();
         this.updateUI();
         
-        // SweetAlert2 check
         if (window.Swal) {
             Swal.fire({
                 toast: true, position: 'top-end', icon: 'success',
@@ -60,10 +74,13 @@ const SB_Cart = {
         if (countEl) countEl.innerText = count;
 
         document.querySelectorAll('.product-card').forEach(card => {
-            const inCart = this.items.some(i => i.code === card.dataset.code);
+            const code = card.getAttribute('data-code');
+            const inCart = this.items.some(i => i.code === code);
             card.classList.toggle('product-in-cart', inCart);
             const b = card.querySelector('.add-to-cart-btn');
-            if (b) b.innerText = inCart ? 'En Carrito' : 'Comprar';
+            if (b) {
+                b.innerText = inCart ? 'En Carrito' : 'Comprar';
+            }
         });
 
         if (btn) {

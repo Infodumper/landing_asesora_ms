@@ -57,7 +57,7 @@
     </script>
 
     <!-- SweetAlert2 (cargado diferido para no bloquear render) -->
-    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Estilos globales -->
     <link rel="stylesheet" href="styles/colores.css">
@@ -1005,10 +1005,12 @@
             }
         };
         SB_Telemetry.init();
+    </script>
 
     <!-- Motor de Carrito -->
     <script src="js/cart.js"></script>
 
+    <script>
         // ─── Función de Contacto WhatsApp ────────────────────────
         function sendWhatsAppContact() {
             const name = document.getElementById('contact-name').value;
