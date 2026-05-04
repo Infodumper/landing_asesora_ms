@@ -13,7 +13,7 @@ const CONFIG = {
     tiktok: "#",
     location: "Mar del Plata, Argentina",
     email: "correo@ejemplo.com",
-    logoPath: "assets/img/logo_sin_fondo.png"
+    logoPath: "assets/img/logos/logo_sin_fondo.png"
 };
 
 // Exportar si se usa en módulos, o simplemente dejarlo global para scripts simples

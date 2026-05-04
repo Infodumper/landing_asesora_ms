@@ -60,7 +60,7 @@ Texto: Una combinación de belleza, calidad y garantía de por vida, con una opo
 
 ## about_image
 Indicación: Ruta de la foto de perfil (mercedes_1.jpeg o mercedes_2.jpeg).
-Texto: assets/img/mercedes_2.jpeg?v=1.2
+Texto: assets/img/personal/mercedes_2.jpeg?v=1.2
 
 ## about_title
 Indicación: Título de la sección Sobre Mí.
