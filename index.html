@@ -35,6 +35,7 @@
     <script src="js/config.js"></script>
     <script src="js/ui-sync.js"></script>
     <script src="js/ui.js"></script>
+    <script src="js/leads.js"></script>
 
     <script>
         tailwind.config = {
@@ -692,6 +693,37 @@
         </div>
     </section>
 
+    <!-- ══════════════════════════════════════════
+         NEWSLETTER — Comunidad (Non-invasive Lead Capture)
+    ══════════════════════════════════════════ -->
+    <section id="newsletter" class="py-16 bg-primary/5" aria-labelledby="news-heading">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-primary/10">
+                <h2 id="news-heading" class="text-3xl md:text-4xl font-black text-brandText uppercase italic mb-4">
+                    Sumate a la <span class="text-primary">Comunidad</span>
+                </h2>
+                <p class="text-brandSubtext font-medium mb-8 max-w-2xl mx-auto">
+                    Recibí tips de imagen, tendencias y promociones exclusivas directamente en tu WhatsApp.
+                </p>
+                
+                <form onsubmit="event.preventDefault(); LeadManager.handleSubmit(event);" 
+                      class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                    <input type="text" id="news-name" placeholder="Tu nombre" required
+                           class="flex-1 bg-gray-50 border border-gray-100 px-6 py-4 rounded-full text-brandText focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium">
+                    <input type="tel" id="news-contact" placeholder="Tu WhatsApp" required
+                           class="flex-[1.5] bg-gray-50 border border-gray-100 px-6 py-4 rounded-full text-brandText focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium">
+                    <button type="submit" 
+                            class="bg-primary text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs hover:bg-brandText transition-all shadow-lg active:scale-95">
+                        Unirme
+                    </button>
+                </form>
+                <p class="mt-6 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+                    * No hacemos spam. Solo contenido de valor.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="py-20 bg-white scroll-mt-24" aria-labelledby="contact-heading">
         <div class="max-w-xl mx-auto px-4">
             <div class="text-center mb-12">
@@ -1007,7 +1039,42 @@
         SB_Telemetry.init();
     </script>
 
-    <!-- Motor de Carrito -->
+    <!-- ══════════════════════════════════════════
+         LEAD CAPTURE POPUP (Non-invasive)
+    ══════════════════════════════════════════ -->
+    <div id="lead-popup" 
+         class="fixed bottom-4 md:bottom-6 left-4 md:left-6 z-[95] w-[calc(100%-2rem)] md:w-[320px] bg-white rounded-[1.5rem] shadow-2xl border border-gray-100 p-6 transform translate-y-[150%] opacity-0 transition-all duration-700 ease-out">
+        <button onclick="LeadManager.closePopup(true)" 
+                class="absolute top-4 right-4 text-gray-400 hover:text-brandText transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-black text-brandText uppercase italic mb-2">¡Regalo para vos!</h3>
+            <p class="text-sm text-brandSubtext font-medium mb-6">
+                Dejanos tus datos y recibí mi <strong>Guía de Imagen Personal</strong> totalmente gratis.
+            </p>
+            
+            <form onsubmit="LeadManager.handleSubmit(event)" class="w-full space-y-3">
+                <input type="text" id="lead-name" required placeholder="Tu nombre" 
+                       class="w-full bg-gray-50 border border-gray-100 px-4 py-3 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium">
+                <input type="tel" id="lead-contact" required placeholder="Tu WhatsApp (Ej: 2231234567)" 
+                       class="w-full bg-gray-50 border border-gray-100 px-4 py-3 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium">
+                <button type="submit" 
+                        class="w-full bg-primary text-white py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-brandText transition-all shadow-lg active:scale-95">
+                    Quiero mi guía
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script src="js/cart.js"></script>
 
     <script>
