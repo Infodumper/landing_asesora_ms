@@ -8,9 +8,9 @@ const CONFIG = {
     consultantTitle: "Asesora de Imagen",
     whatsappNumber: "5492233453279",
     whatsappLink: "https://wa.me/5492233453279",
-    instagram: "#",
+    instagram: "https://www.instagram.com/ms.bellass/",
     facebook: "#",
-    tiktok: "#",
+    tiktok: "https://www.tiktok.com/@mercedessaucedo73",
     location: "Mar del Plata, Argentina",
     email: "correo@ejemplo.com",
     logoPath: "assets/img/logos/logo_sin_fondo.png"
