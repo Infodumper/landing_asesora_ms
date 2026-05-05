@@ -48,16 +48,25 @@ const LeadManager = {
     async handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
-        const nameInput = form.querySelector('input[placeholder*="nombre"]');
-        const contactInput = form.querySelector('input[placeholder*="WhatsApp"]');
+        
+        // Buscamos campos de forma más robusta
+        const nameInput = form.querySelector('input[type="text"], input[id*="name"], input[placeholder*="nombre"]');
+        const contactInput = form.querySelector('input[type="tel"], input[id*="contact"], input[id*="phone"], input[placeholder*="WhatsApp"]');
+        const messageInput = form.querySelector('textarea, input[id*="msg"], input[id*="message"]');
+        const emailInput = form.querySelector('input[type="email"]');
 
         const name = nameInput ? nameInput.value : '';
         const contact = contactInput ? contactInput.value : '';
+        const email = emailInput ? emailInput.value : '';
+        const rawMessage = messageInput ? messageInput.value : '';
+        
+        // Combinamos email si existe en el mensaje
+        const message = email ? `[Email: ${email}] ${rawMessage}` : rawMessage;
 
         if (!name || !contact) {
             Swal.fire({
                 title: 'Opps!',
-                text: 'Por favor completá los campos.',
+                text: 'Por favor completá los campos obligatorios.',
                 icon: 'warning',
                 confirmButtonColor: '#BE185D'
             });
@@ -81,7 +90,7 @@ const LeadManager = {
                     name,
                     contact,
                     source: form.id || 'popup',
-                    message: 'Desea unirse a la comunidad / recibir guía'
+                    message: message || 'Desea unirse a la comunidad'
                 })
             });
 
@@ -98,8 +107,10 @@ const LeadManager = {
             console.warn('[LEADS] Error en envío directo, usando WhatsApp como fallback:', error);
             
             // Fallback: WhatsApp (Visible)
-            const message = `Hola Merce! Me gustaría sumarme a la comunidad. Mi nombre es ${name}. Mi contacto es ${contact}.`;
-            const link = `${this.config.whatsappBase}?text=${encodeURIComponent(message)}`;
+            let waMsg = `Hola Merce! Mi nombre es ${name}. Mi contacto es ${contact}.`;
+            if (message) waMsg += `\n\nMensaje: ${message}`;
+            
+            const link = `${this.config.whatsappBase}?text=${encodeURIComponent(waMsg)}`;
             
             this.onSuccess(false, link);
         }

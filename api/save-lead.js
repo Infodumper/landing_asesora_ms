@@ -1,6 +1,8 @@
+const { google } = require('googleapis');
+
 /**
  * api/save-lead.js — Vercel Serverless Function
- * Recibe leads de la web y los procesa (Email, Google Sheets, etc.)
+ * Recibe leads de la web y los guarda en Google Sheets y notifica vía Telegram.
  */
 
 module.exports = async (req, res) => {
@@ -14,17 +16,37 @@ module.exports = async (req, res) => {
         return res.status(400).json({ error: 'Nombre y contacto son requeridos' });
     }
 
+    const SERVICE_ACCOUNT = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_ID;
+
     try {
-        console.log('[LEAD_RECEIVED]', { name, contact, message, source, date: new Date().toISOString() });
+        const timestamp = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
+        console.log('[LEAD_RECEIVED]', { name, contact, message, source, timestamp });
 
-        /**
-         * AQUÍ: Podríamos integrar con:
-         * 1. Google Sheets (usando googleapis, ya configurado en el proyecto)
-         * 2. Email (usando Nodemailer o SendGrid)
-         * 3. Slack/Discord Webhook
-         */
+        // 1. Guardar en Google Sheets (si está configurado)
+        if (SERVICE_ACCOUNT && SPREADSHEET_ID) {
+            try {
+                const credentials = JSON.parse(SERVICE_ACCOUNT);
+                const auth = new google.auth.GoogleAuth({
+                    credentials,
+                    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+                });
+                const sheets = google.sheets({ version: 'v4', auth });
 
-        // Por ahora, simulamos éxito para que el usuario pruebe el flujo "invisible"
+                await sheets.spreadsheets.values.append({
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: 'Leads!A:E',
+                    valueInputOption: 'USER_ENTERED',
+                    requestBody: {
+                        values: [[timestamp, name, contact, source, message]],
+                    },
+                });
+                console.log('[SHEETS_SUCCESS]');
+            } catch (err) {
+                console.error('[SHEETS_ERROR]', err.message);
+            }
+        }
+
         return res.status(200).json({ 
             status: 'success', 
             message: 'Lead capturado correctamente' 

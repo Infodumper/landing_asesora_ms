@@ -741,7 +741,7 @@
                 </div>
             </div>
 
-            <form id="contact-form" class="space-y-6" onsubmit="event.preventDefault(); sendWhatsAppContact();">
+            <form id="contact-form" class="space-y-6" onsubmit="LeadManager.handleSubmit(event);">
                 <!-- Nombre -->
                 <div class="space-y-2 text-left">
                     <label for="contact-name"
@@ -1086,22 +1086,9 @@
 
     <script>
         // ─── Función de Contacto WhatsApp ────────────────────────
-        function sendWhatsAppContact() {
-            const name = document.getElementById('contact-name').value;
-            const phone = document.getElementById('contact-phone').value;
-            const email = document.getElementById('contact-email').value;
-            const msg = document.getElementById('contact-msg').value;
+        // sendWhatsAppContact ha sido reemplazada por LeadManager.handleSubmit(event)
+        // para automatizar el almacenamiento de leads y notificaciones invisibles.
 
-            if (!name || !phone || !msg) {
-                Swal.fire('Error', 'Por favor completa los campos requeridos.', 'error');
-                return;
-            }
-
-            const text = `*Consulta desde la Web*%0A%0A*Nombre:* ${name}%0A*WhatsApp/tel:* ${phone}%0A*Email:* ${email || 'No indicado'}%0A*Mensaje:* ${msg}`;
-            const waLink = `https://wa.me/5492233453279?text=${text}`;
-
-            window.open(waLink, '_blank');
-        }
 
         // ─── Función Próximamente ───────────────────────────────
         function proximamente() {
