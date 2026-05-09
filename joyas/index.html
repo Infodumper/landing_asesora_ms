@@ -110,7 +110,6 @@
                 </p>
             </div>
 
-
             <!-- Section: Nueva Colección (Featured Products) -->
             <section id="productos" class="py-4 bg-gray-50/30 rounded-[2.5rem] scroll-mt-24 px-4" aria-labelledby="prod-heading">
                 <div class="w-full max-w-5xl mx-auto">
@@ -118,79 +117,96 @@
                         class="text-xl md:text-2xl font-bold text-brandText mb-4 text-center uppercase tracking-wide">
                         Nueva colección
                     </h2>
-                    <div class="flex overflow-x-auto gap-4 md:gap-6 snap-x snap-mandatory pb-6 no-scrollbar">
+                    
+                    <div class="relative group">
+                        <!-- Botones de Navegación (PC) -->
+                        <button id="promo-prev" aria-label="Anterior"
+                            class="hidden md:flex absolute -left-4 lg:-left-8 top-1/2 -translate-y-1/2 bg-white shadow-lg hover:bg-gray-50 text-primary p-2 rounded-full z-20 transition-all active:scale-95 border border-gray-100 items-center justify-center opacity-0 group-hover:opacity-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button id="promo-next" aria-label="Siguiente"
+                            class="hidden md:flex absolute -right-4 lg:-right-8 top-1/2 -translate-y-1/2 bg-white shadow-lg hover:bg-gray-50 text-primary p-2 rounded-full z-20 transition-all active:scale-95 border border-gray-100 items-center justify-center opacity-0 group-hover:opacity-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
 
-                        <!-- Producto 1 -->
-                        <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
-                            data-content-attr="data-name:product1_name,data-code:product1_code,data-price:product1_price"
-                            data-name="Gargantilla Mariposa" data-code="GA1189R50" data-price="69000">
-                            <img src="../assets/img/productos/destacados_1.jpeg" alt="Gargantilla Mariposa"
-                                class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
-                            <span class="text-xs text-gray-500 font-medium mb-1" data-content="product1_code">CÓD. GA1189R50</span>
-                            <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
-                                data-content="product1_name">Gargantilla Mariposa
-                            </h3>
-                            <div class="text-lg font-black text-primary mb-4" data-content="product1_price">$ 69.000</div>
-                            <button
-                                class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
-                                Comprar
-                            </button>
+                        <div id="promo-scroll" class="flex overflow-x-auto gap-4 md:gap-6 snap-x snap-mandatory pb-6 no-scrollbar scroll-smooth">
+
+                            <!-- Producto 1 -->
+                            <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
+                                data-content-attr="data-name:product1_name,data-code:product1_code,data-price:product1_price"
+                                data-name="Gargantilla Mariposa" data-code="GA1189R50" data-price="69000">
+                                <img src="../assets/img/productos/destacados_1.jpeg" alt="Gargantilla Mariposa"
+                                    class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
+                                <span class="text-xs text-gray-500 font-medium mb-1" data-content="product1_code">CÓD. GA1189R50</span>
+                                <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
+                                    data-content="product1_name">Gargantilla Mariposa
+                                </h3>
+                                <div class="text-lg font-black text-primary mb-4" data-content="product1_price">$ 69.000</div>
+                                <button
+                                    class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
+                                    Comprar
+                                </button>
+                            </div>
+
+                            <!-- Producto 2 -->
+                            <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
+                                data-content-attr="data-name:product2_name,data-code:product2_code,data-price:product2_price"
+                                data-name="Pulsera aleación oro 14" data-code="CA1500R18" data-price="53900">
+                                <img src="../assets/img/productos/destacados_2.jpeg" alt="Pulsera aleación oro 14"
+                                    class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
+                                <span class="text-xs text-gray-500 font-medium mb-1" data-content="product2_code">CÓD. CA1500R18</span>
+                                <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
+                                    data-content="product2_name">Pulsera aleación oro 14
+                                </h3>
+                                <div class="text-lg font-black text-primary mb-4" data-content="product2_price">$ 53.900</div>
+                                <button
+                                    class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
+                                    Comprar
+                                </button>
+                            </div>
+
+                            <!-- Producto 3 -->
+                            <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
+                                data-content-attr="data-name:product3_name,data-code:product3_code,data-price:product3_price"
+                                data-name="Aros redondos aleación oro 14" data-code="AR4092R" data-price="31900">
+                                <img src="../assets/img/productos/destacados_3.jpeg" alt="Aros redondos aleación oro 14"
+                                    class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
+                                <span class="text-xs text-gray-500 font-medium mb-1" data-content="product3_code">CÓD. AR4092R</span>
+                                <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
+                                    data-content="product3_name">Aros redondos aleación oro 14
+                                </h3>
+                                <div class="text-lg font-black text-primary mb-4" data-content="product3_price">$ 31.900</div>
+                                <button
+                                    class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
+                                    Comprar
+                                </button>
+                            </div>
+
+                            <!-- Producto 4 -->
+                            <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
+                                data-content-attr="data-name:product4_name,data-code:product4_code,data-price:product4_price"
+                                data-name="Aros de aleación oro 14 con piedras" data-code="AR4094R" data-price="24000">
+                                <img src="../assets/img/productos/destacados_4.jpeg" alt="Aros de aleación oro 14 con piedras"
+                                    class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
+                                <span class="text-xs text-gray-500 font-medium mb-1" data-content="product4_code">CÓD. AR4094R</span>
+                                <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
+                                    data-content="product4_name">Aros de aleación oro 14 con piedras
+                                </h3>
+                                <div class="text-lg font-black text-primary mb-4" data-content="product4_price">$ 24.000</div>
+                                <button
+                                    class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
+                                    Comprar
+                                </button>
+                            </div>
                         </div>
-
-                        <!-- Producto 2 -->
-                        <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
-                            data-content-attr="data-name:product2_name,data-code:product2_code,data-price:product2_price"
-                            data-name="Pulsera aleación oro 14" data-code="CA1500R18" data-price="53900">
-                            <img src="../assets/img/productos/destacados_2.jpeg" alt="Pulsera aleación oro 14"
-                                class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
-                            <span class="text-xs text-gray-500 font-medium mb-1" data-content="product2_code">CÓD. CA1500R18</span>
-                            <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
-                                data-content="product2_name">Pulsera aleación oro 14
-                            </h3>
-                            <div class="text-lg font-black text-primary mb-4" data-content="product2_price">$ 53.900</div>
-                            <button
-                                class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
-                                Comprar
-                            </button>
-                        </div>
-
-                        <!-- Producto 3 -->
-                        <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
-                            data-content-attr="data-name:product3_name,data-code:product3_code,data-price:product3_price"
-                            data-name="Aros redondos aleación oro 14" data-code="AR4092R" data-price="31900">
-                            <img src="../assets/img/productos/destacados_3.jpeg" alt="Aros redondos aleación oro 14"
-                                class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
-                            <span class="text-xs text-gray-500 font-medium mb-1" data-content="product3_code">CÓD. AR4092R</span>
-                            <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
-                                data-content="product3_name">Aros redondos aleación oro 14
-                            </h3>
-                            <div class="text-lg font-black text-primary mb-4" data-content="product3_price">$ 31.900</div>
-                            <button
-                                class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
-                                Comprar
-                            </button>
-                        </div>
-
-                        <!-- Producto 4 -->
-                        <div class="bg-white rounded-[1.5rem] shadow-sm border border-gray-100 p-4 flex flex-col items-center hover:shadow-md transition-all min-w-[220px] md:min-w-[240px] flex-shrink-0 snap-start product-card"
-                            data-content-attr="data-name:product4_name,data-code:product4_code,data-price:product4_price"
-                            data-name="Aros de aleación oro 14 con piedras" data-code="AR4094R" data-price="24000">
-                            <img src="../assets/img/productos/destacados_4.jpeg" alt="Aros de aleación oro 14 con piedras"
-                                class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" width="400" height="176">
-                            <span class="text-xs text-gray-500 font-medium mb-1" data-content="product4_code">CÓD. AR4094R</span>
-                            <h3 class="font-bold text-brandText mb-2 text-center text-sm md:text-base h-10 flex items-center justify-center"
-                                data-content="product4_name">Aros de aleación oro 14 con piedras
-                            </h3>
-                            <div class="text-lg font-black text-primary mb-4" data-content="product4_price">$ 24.000</div>
-                            <button
-                                class="add-to-cart-btn w-full py-2 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-white transition-colors uppercase tracking-widest">
-                                Comprar
-                            </button>
-                        </div>
-
                     </div>
                 </div>
             </section>
+
 
             <!-- Section 1: Catálogo Digital -->
 
@@ -405,6 +421,21 @@
                     }
                 });
             });
+
+            // 3. Navegación de Productos (Arrows)
+            const promoScroll = document.getElementById('promo-scroll');
+            const promoPrev   = document.getElementById('promo-prev');
+            const promoNext   = document.getElementById('promo-next');
+
+            if (promoScroll && promoPrev && promoNext) {
+                const scrollAmount = 300;
+                promoNext.addEventListener('click', () => {
+                    promoScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+                promoPrev.addEventListener('click', () => {
+                    promoScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+            }
 
             // Carga Dinámica desde Drive
             // initDynamicCatalogs(); // Desactivado temporalmente - Usando archivos locales
