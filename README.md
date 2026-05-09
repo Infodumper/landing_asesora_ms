@@ -10,79 +10,78 @@
 
 ---
 
-## 🌟 Descripción del Proyecto
+## Descripción del Proyecto
 
-Plataforma digital premium para la marca **MS Bellass** de Mercedes Saucedo. Esta landing page está diseñada bajo los más altos estándares de estética y funcionalidad, proporcionando una experiencia fluida para la exhibición de servicios, catálogos digitales y captación de leads.
+Plataforma digital desarrollada para la marca **MS Bellass** de Mercedes Saucedo. Esta landing page está diseñada bajo estándares de alta calidad estética y funcional, proporcionando una experiencia optimizada para la exhibición de servicios profesionales, catálogos digitales y captación de clientes.
 
-Ubicada en Mar del Plata, Argentina, la web sirve como centro de operaciones para asesorías de imagen, talleres formativos, servicios de maquillaje y la red de emprendedoras de Perla Negra.
+La plataforma centraliza las operaciones de asesoría de imagen, talleres formativos, servicios de maquillaje y la red de emprendedoras de Perla Negra en Mar del Plata, Argentina.
 
-## 🚀 Características Principales
+## Características Principales
 
--   **💎 Diseño de Alta Gama**: Interfaz basada en el sistema de "Subplacas", con estética minimalista, sombras suaves y efectos de glassmorphism.
--   **📑 CMS Desacoplado**: Gestión de contenidos mediante Markdown (`assets/content.md`), permitiendo actualizaciones de texto rápidas sin modificar la estructura HTML.
--   **📖 Catálogos Inteligentes**: Integración con **Google Drive API** para la visualización dinámica de catálogos multimarca (Natura, Avon, Perla Negra, etc.).
--   **🛒 Motor de Carrito (SB_Cart)**: Sistema de pedidos ligero que permite a los usuarios armar su carrito y enviar el pedido directamente vía WhatsApp.
--   **⚡ Performance & SEO**: Estructura optimizada para tiempos de carga mínimos, accesibilidad y posicionamiento en buscadores (Lighthouse optimized).
--   **📱 Mobile First**: Experiencia totalmente responsiva con navegación táctil optimizada para carruseles y listados.
+-   **Diseño Institucional**: Interfaz basada en el sistema de "Subplacas", con estética minimalista, sombras suaves y componentes visuales refinados.
+-   **Gestión de Contenidos (CMS)**: Sistema de actualización mediante Markdown (`assets/content.md`), permitiendo modificaciones de texto rápidas sin intervención en el código fuente.
+-   **Integración de Catálogos**: Visualización dinámica de catálogos multimarca mediante la API de Google Drive, asegurando que el material esté siempre actualizado.
+-   **Sistema de Pedidos (SB_Cart)**: Motor de carrito integrado que permite a los usuarios gestionar sus selecciones y canalizar pedidos directamente vía WhatsApp.
+-   **Rendimiento y SEO**: Arquitectura optimizada para tiempos de respuesta mínimos, accesibilidad y cumplimiento de buenas prácticas de indexación.
+-   **Arquitectura Mobile-First**: Interfaz totalmente responsiva adaptada a dispositivos móviles con navegación táctil fluida.
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
--   **Core**: HTML5, Vanilla JavaScript (ES6+).
--   **Estilos**: Tailwind CSS (vía CDN con configuración extendida) + CSS Variables nativas.
--   **Infraestructura**: Vercel Serverless Functions (Node.js).
--   **Integraciones**: Google Drive API, SweetAlert2 para feedback dinámico.
--   **Fuentes**: Poppins (Cuerpo), Libre Baskerville (Serif), Great Vibes (Brand).
+-   **Lenguajes**: HTML5, Vanilla JavaScript (ES6+).
+-   **Framework de Estilos**: Tailwind CSS (CDN) con extensiones de configuración personalizadas.
+-   **Infraestructura**: Vercel Serverless Functions.
+-   **Integraciones**: Google Drive API (Service Account).
+-   **Tipografía**: Poppins, Libre Baskerville, Great Vibes.
 
-## 📁 Estructura del Sitio
+## Estructura del Repositorio
 
 ```
 landing_asesora_ms/
-├── api/                       # Vercel Functions (Integración con Google Drive)
-├── assets/                    # Recursos Estáticos
-│   ├── content.md             # CMS Centralizado (Markdown)
-│   ├── img/                   # Biblioteca de imágenes optimizada
-│   └── docs/                  # Documentación y PDFs locales
-├── js/                        # Lógica de Negocio
-│   ├── cart.js                # Motor de carrito y pedidos
-│   ├── ui-sync.js             # Sincronizador de contenido CMS
-│   └── config.js              # Configuración global de marca
-├── styles/                    # Sistema de Diseño
-│   ├── colores.css            # Tokens de color y variables
-│   └── main.css               # Componentes y utilidades globales
-├── [módulos]/                 # Páginas de servicios (Joyas, Maquillaje, etc.)
-└── index.html                 # Home principal y Hero Carrusel
+├── api/                       # Funciones Serverless (Node.js)
+├── assets/                    # Recursos y Contenidos
+│   ├── content.md             # CMS Centralizado
+│   ├── img/                   # Biblioteca de imágenes
+│   └── docs/                  # Documentos auxiliares
+├── js/                        # Lógica de Aplicación
+│   ├── cart.js                # Gestión de carrito
+│   ├── ui-sync.js             # Sincronización de datos
+│   └── config.js              # Parámetros de marca
+├── styles/                    # Definiciones de Estilo
+│   ├── colores.css            # Variables de diseño
+│   └── main.css               # Estilos globales
+└── index.html                 # Punto de entrada principal
 ```
 
-## ⚙️ Instalación y Configuración
+## Instalación y Despliegue
 
-### Despliegue Local
+### Entorno de Desarrollo
 1.  Clonar el repositorio:
     ```bash
     git clone https://github.com/Infodumper/landing_asesora_ms.git
     ```
-2.  Instalar dependencias para las funciones de API:
+2.  Instalar dependencias necesarias:
     ```bash
     npm install
     ```
-3.  Configurar variables de entorno:
-    Crear un archivo `.env` con las credenciales de la **Service Account** de Google Cloud para acceder a la carpeta de Drive.
-4.  Iniciar servidor de desarrollo:
+3.  Configuración de variables:
+    Configurar el archivo `.env` con las credenciales de la **Service Account** de Google Cloud.
+4.  Ejecución local:
     ```bash
     vercel dev
     ```
 
-## 📝 Mantenimiento de Contenidos
+## Actualización de Contenidos
 
-El proyecto utiliza un sistema de **UI Sync** que vincula el archivo `assets/content.md` con los elementos de la web mediante atributos `data-content`. Para cambiar cualquier texto:
-1. Abra `assets/content.md`.
-2. Modifique el texto bajo la clave correspondiente.
-3. Guarde y los cambios se reflejarán automáticamente en la web.
+El proyecto utiliza un sistema de sincronización automática. Para modificar textos o precios en el sitio:
+1. Acceda al archivo `assets/content.md`.
+2. Actualice el valor correspondiente a la clave deseada.
+3. Los cambios se verán reflejados en la web en la siguiente carga.
 
 ---
 
 <div align="center">
   <p>© 2026 <strong>Kaizuna</strong> — Gestion SB Standard v2.0</p>
   <a href="https://kaizuna.com.ar/" target="_blank">
-    <img src="assets/img/logos/logo_Kaizuna.jpeg" alt="Kaizuna Logo" height="30">
+    <img src="assets/img/logos/logo_Kaizuna.png" alt="Kaizuna Logo" height="30">
   </a>
 </div>
