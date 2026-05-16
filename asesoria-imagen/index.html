@@ -15,29 +15,8 @@
 
     <!-- Tailwind CDN + Config -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary:      '#BE185D',
-                        secondary:    '#FB7185',
-                        brandText:    '#1F2A37',
-                        brandSubtext: '#4B5563',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        serif:   ['Libre Baskerville', 'serif'],
-                        brand:   ['Dancing Script', 'cursive'],
-                    },
-                    borderRadius: {
-                        'placa': '2.5rem',
-                        'subplaca': '1.5rem',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="../js/asesoria.js"></script>
+
 
     <!-- Estilos globales -->
     <link rel="icon" type="image/png" href="../assets/img/logos/logo_sin_fondo.png">
@@ -294,26 +273,7 @@
         <img src="../assets/img/social/whatsapp_2.png" alt="WhatsApp" class="relative w-16 h-16 md:w-20 md:h-20 drop-shadow-2xl">
     </a>
 
-    <script>
-        const carousel = document.getElementById('carousel');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        nextBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
-        });
-
-        // Eecto scroll en header
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('bg-white/95', window.scrollY > 20);
-            header.classList.toggle('shadow-sm', window.scrollY > 20);
-        }, { passive: true });
-    </script>
 </body>
+
 </html>
 

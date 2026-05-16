@@ -31,31 +31,13 @@
 
     <!-- Tailwind CDN + Config de Tokens -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configuración Centralizada -->
+    
+    <!-- Configuración Centralizada y Lógica de App -->
     <script src="js/config.js"></script>
     <script src="js/ui-sync.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/leads.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#BE185D',
-                        secondary: '#FB7185',
-                        brandText: '#1F2A37',
-                        brandSubtext: '#4B5563',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        serif: ['Libre Baskerville', 'serif'],
-                        brand: ['Great Vibes', 'cursive'],
-                    },
-                }
-            }
-        }
-    </script>
+    <script src="js/index.js"></script>
 
     <!-- SweetAlert2 (cargado diferido para no bloquear render) -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -65,9 +47,9 @@
     <link rel="stylesheet" href="styles/main.css">
 
     <!-- Vercel Speed Insights -->
-    <script>window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
+
 
 <body class="bg-white text-brandText antialiased scroll-smooth overflow-x-hidden w-full m-0 p-0">
 
@@ -831,145 +813,6 @@
     </nav>
 
     <!-- ══════════════════════════════════════════
-         SCRIPTS
-    ══════════════════════════════════════════ -->
-    <script>
-        // ─── Header con efecto scroll ─────────────────────────────
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('header-scrolled', window.scrollY > 20);
-        }, { passive: true });
-
-        // ─── Carrusel Infinito ────────────────────────────────────
-        (function initCarousel() {
-            const track = document.getElementById('carousel-track');
-            const dots = document.querySelectorAll('.carousel-dot');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const TOTAL = 5;
-            let current = 1;
-            let busy = false;
-            let autoTimer;
-
-            function goTo(idx, instant = false) {
-                track.style.transition = instant ? 'none' : 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
-                track.style.transform = `translateX(-${idx * 100}%)`;
-                // Actualizar dots (mapeo correcto)
-                const dotIdx = idx === 0 ? TOTAL - 1 : idx > TOTAL ? 0 : idx - 1;
-                dots.forEach((d, i) => {
-                    d.classList.toggle('bg-white', i === dotIdx);
-                    d.classList.toggle('bg-white/40', i !== dotIdx);
-                });
-            }
-
-            track.addEventListener('transitionend', () => {
-                busy = false;
-                if (current >= TOTAL + 1) { current = 1; goTo(current, true); }
-                if (current <= 0) { current = TOTAL; goTo(current, true); }
-            });
-
-            function slide(dir) {
-                if (busy) return;
-                busy = true;
-                current += dir;
-                goTo(current);
-            }
-
-            nextBtn.addEventListener('click', () => { slide(1); resetAuto(); });
-            prevBtn.addEventListener('click', () => { slide(-1); resetAuto(); });
-            dots.forEach((dot, i) => dot.addEventListener('click', () => {
-                current = i + 1; goTo(current); resetAuto();
-            }));
-
-            function resetAuto() {
-                clearInterval(autoTimer);
-                autoTimer = setInterval(() => slide(1), 8000);
-            }
-            resetAuto();
-        })();
-
-        // ─── Ribbon Infinito ──────────────────────────────────────
-        (function initRibbon() {
-            const ribbon = document.getElementById('ribbon-scroll');
-            const track = document.getElementById('ribbon-track');
-            const set = document.getElementById('ribbon-set');
-
-            // Solo 2 clones son suficientes para el efecto
-            track.appendChild(set.cloneNode(true));
-            track.appendChild(set.cloneNode(true));
-
-            ribbon.addEventListener('scroll', () => {
-                const gap = parseInt(getComputedStyle(track).gap) || 24;
-                const setWidth = set.offsetWidth + gap;
-                if (ribbon.scrollLeft >= setWidth * 2) ribbon.scrollLeft -= setWidth;
-                if (ribbon.scrollLeft <= 0) ribbon.scrollLeft += setWidth;
-            }, { passive: true });
-        })();
-
-        // ─── Menú Móvil ───────────────────────────────────────────
-        (function initMobileMenu() {
-            // ─── Sincronización con Drive ────────────────────────
-            async function initDynamicAssets() {
-                try {
-                    const response = await fetch('/api/get-catalogs');
-                    const res = await response.json();
-                    if (res.status === 'success' && res.data) {
-                        const { carousel } = res.data;
-                        if (carousel && carousel.length > 0) {
-                            carousel.forEach(img => {
-                                const num = img.name.match(/\d+/);
-                                if (num) {
-                                    const el = document.getElementById(`carousel-img-${num[0]}`);
-                                    if (el) el.src = img.url;
-
-                                    // Actualizar clones para loop infinito
-                                    if (num[0] === '1') document.getElementById('carousel-img-clone-1').src = img.url;
-                                    if (num[0] === '4') document.getElementById('carousel-img-clone-4').src = img.url;
-                                }
-                            });
-                        }
-                    }
-                } catch (err) {
-                    console.warn('[DRIVE] Error cargando assets dinámicos:', err);
-                }
-            }
-            // initDynamicAssets(); // Desactivado por el momento - Usando fotos locales
-
-            const menuBtn = document.getElementById('menu-btn');
-            const closeBtn = document.getElementById('close-menu');
-            const menu = document.getElementById('mobile-menu');
-            const links = menu.querySelectorAll('.mobile-link');
-            const toggle = () => menu.classList.toggle('translate-x-full');
-            menuBtn.addEventListener('click', toggle);
-            closeBtn.addEventListener('click', toggle);
-            links.forEach(l => l.addEventListener('click', toggle));
-        })();
-
-        // ─── Telemetría (Gestion SB Standard) ────────────────────
-        const SB_Telemetry = {
-            log(type, data) {
-                console.log(`[SB-TELEMETRY] ${type.toUpperCase()}:`, {
-                    timestamp: new Date().toISOString(),
-                    type, path: location.pathname, data
-                });
-            },
-            init() {
-                window.onerror = (msg, url, line) => this.log('error', { msg, url, line });
-                document.querySelectorAll('a[id], button[id]').forEach(el => {
-                    el.addEventListener('click', e => {
-                        this.log('interaction', {
-                            id: e.currentTarget.id,
-                            label: e.currentTarget.innerText?.substring(0, 30)
-                        });
-                    });
-                });
-                this.log('lifecycle', { event: 'load' });
-            }
-        };
-        SB_Telemetry.init();
-    </script>
-
-    <!-- ══════════════════════════════════════════
          LEAD CAPTURE POPUP (Non-invasive)
     ══════════════════════════════════════════ -->
     <div id="lead-popup" 
@@ -1007,59 +850,7 @@
 
     <script src="js/cart.js"></script>
 
-    <script>
-        // ─── Función de Contacto WhatsApp ────────────────────────
-        // sendWhatsAppContact ha sido reemplazada por LeadManager.handleSubmit(event)
-        // para automatizar el almacenamiento de leads y notificaciones invisibles.
 
-
-        // ─── Función Próximamente ───────────────────────────────
-        function proximamente() {
-            Swal.fire({
-                title: '¡Próximamente!',
-                text: 'Estamos trabajando para brindarte el mejor servicio en esta sección. ¡Volvé a visitarnos pronto!',
-                icon: 'info',
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#f48c42',
-                customClass: {
-                    popup: 'rounded-[2rem]',
-                    confirmButton: 'rounded-full px-8 py-3 font-bold uppercase tracking-widest text-xs'
-                }
-            });
-        }
-
-        // ─── Inicialización Dinámica de Carrusel ──────────────────
-        async function initDynamicCarousel() {
-            try {
-                const response = await fetch('/api/get-catalogs');
-                const result = await response.json();
-
-                // IMPORTANTE: Acceder a result.data.carousel
-                if (result.status === 'success' && result.data && result.data.carousel) {
-                    result.data.carousel.forEach((img) => {
-                        const num = img.order;
-                        if (img.url && num && num <= 4) {
-                            const elements = document.querySelectorAll(`img[id*="carousel-img-${num}"], img[id*="carousel-img-clone-${num}"]`);
-                            elements.forEach(el => {
-                                // Solo cambiamos la fuente si la URL de Drive parece válida
-                                if (img.url.startsWith('http')) {
-                                    el.src = img.url;
-                                }
-                            });
-                        }
-                    });
-                    console.log('✅ Carrusel sincronizado con Drive');
-                }
-            } catch (error) {
-                console.warn('⚠️ No se pudo cargar el carrusel dinámico:', error);
-            }
-        }
-
-        // Ejecutar carga dinámica al inicio
-        document.addEventListener('DOMContentLoaded', () => {
-            initDynamicCarousel();
-        });
-    </script>
 </body>
 
 </html>
