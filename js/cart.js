@@ -6,6 +6,7 @@
 const SB_Cart = {
     KEY: 'sb_cart_v1',
     items: [],
+    saveCartTimer: null,
 
     init() {
         const saved = localStorage.getItem(this.KEY);
@@ -17,7 +18,17 @@ const SB_Cart = {
         setTimeout(() => this.updateUI(), 1500);
     },
 
-    persist() { localStorage.setItem(this.KEY, JSON.stringify(this.items)); },
+    persist() { 
+        localStorage.setItem(this.KEY, JSON.stringify(this.items));
+        this.scheduleSaveToAPI();
+    },
+
+    scheduleSaveToAPI() {
+        if (this.saveCartTimer) clearTimeout(this.saveCartTimer);
+        this.saveCartTimer = setTimeout(() => {
+            this.saveCartStateToAPI();
+        }, 1500); // 1.5s de gracia para evitar spamear la API
+    },
 
     bindEvents() {
         // Delegación de eventos para botones de "Añadir al carrito"
@@ -237,8 +248,6 @@ const SB_Cart = {
     },
 
     saveCartStateToAPI() {
-        if (this.items.length === 0) return;
-        
         let total = 0;
         this.items.forEach(i => total += i.price * i.qty);
 

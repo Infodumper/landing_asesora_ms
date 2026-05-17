@@ -34,7 +34,11 @@ module.exports = async (req, res) => {
         
         let details = items.map(i => `${i.qty}x ${i.name} (${i.code}) [$${(i.price * i.qty).toLocaleString('es-AR')}]`).join('\n');
         
-        if (SERVICE_ACCOUNT && items.length > 0) {
+        if (items.length === 0) {
+            details = 'Carrito vaciado / Sin ítems';
+        }
+        
+        if (SERVICE_ACCOUNT) {
             try {
                 const credentials = JSON.parse(SERVICE_ACCOUNT);
                 const auth = new google.auth.GoogleAuth({
