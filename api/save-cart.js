@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const { items, total, origin } = req.body;
 
     const SERVICE_ACCOUNT = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-    const SPREADSHEET_ID = '1HBI5Ter9wrzfhmveu9kWGZsFDFzdS7aIx5E4scVC_A8';
+    const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
 
     try {
         const timestamp = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
