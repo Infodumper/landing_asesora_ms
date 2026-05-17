@@ -43,6 +43,25 @@ const SB_Cart = {
                 this.showPreview();
             }
         });
+
+        // Eventos del modal de carrito (botones + - eliminar)
+        document.addEventListener('click', e => {
+            const btnInc = e.target.closest('.cart-btn-inc');
+            if (btnInc) {
+                this.changeQty(btnInc.getAttribute('data-code'), 1);
+                return;
+            }
+            const btnDec = e.target.closest('.cart-btn-dec');
+            if (btnDec) {
+                this.changeQty(btnDec.getAttribute('data-code'), -1);
+                return;
+            }
+            const btnDel = e.target.closest('.cart-btn-del');
+            if (btnDel) {
+                this.removeItem(btnDel.getAttribute('data-code'));
+                return;
+            }
+        });
     },
 
     add(product) {
@@ -89,15 +108,28 @@ const SB_Cart = {
         }
     },
 
-    showPreview() {
-        if (!window.Swal) return;
-
+    renderCartHtml() {
         let html = `<div class="text-left text-sm max-h-[40vh] overflow-y-auto px-2"><table class="w-full"><thead class="border-b border-gray-100 italic text-brandText/60 text-[10px] uppercase"><tr><th class="py-2 text-left">Producto</th><th class="py-2 text-center">Cant.</th><th class="py-2 text-right">Subtotal</th></tr></thead><tbody class="divide-y divide-gray-50 uppercase text-[11px] font-bold">`;
         let total = 0;
         this.items.forEach(item => {
             const sub = item.price * item.qty;
             total += sub;
-            html += `<tr><td class="py-3">${item.name} <br><span class="text-[9px] text-gray-400">CÓD. ${item.code}</span></td><td class="py-3 text-center">${item.qty}</td><td class="py-3 text-right">$ ${sub.toLocaleString('es-AR')}</td></tr>`;
+            html += `<tr>
+                <td class="py-3">${item.name} <br><span class="text-[9px] text-gray-400">CÓD. ${item.code}</span></td>
+                <td class="py-3">
+                    <div class="flex items-center justify-center gap-2">
+                        <button class="cart-btn-dec w-5 h-5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-primary transition-colors flex items-center justify-center" data-code="${item.code}">-</button>
+                        <span class="w-4 text-center">${item.qty}</span>
+                        <button class="cart-btn-inc w-5 h-5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-primary transition-colors flex items-center justify-center" data-code="${item.code}">+</button>
+                    </div>
+                </td>
+                <td class="py-3 text-right whitespace-nowrap">
+                    $ ${sub.toLocaleString('es-AR')}
+                    <button class="cart-btn-del text-red-400 hover:text-red-600 ml-1 transition-colors" data-code="${item.code}" title="Eliminar">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                </td>
+            </tr>`;
         });
         
         if (this.items.length === 0) {
@@ -105,25 +137,64 @@ const SB_Cart = {
         } else {
             html += `</tbody></table></div><div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center px-2"><span class="font-black text-brandText uppercase tracking-widest">Total:</span><span class="text-xl font-black text-primary">$ ${total.toLocaleString('es-AR')}</span></div>`;
         }
+        return html;
+    },
+
+    showPreview() {
+        if (!window.Swal) return;
 
         Swal.fire({
-            title: 'Tu Pedido', html,
+            title: 'Tu Pedido', 
+            html: this.renderCartHtml(),
+            showCloseButton: true,
             showCancelButton: this.items.length > 0,
-            confirmButtonText: this.items.length > 0 ? 'Enviar por WhatsApp' : 'Volver',
+            showDenyButton: this.items.length > 0,
+            confirmButtonText: this.items.length > 0 ? 'Enviar por WhatsApp' : 'Ir a la Tienda',
+            denyButtonText: 'Agregar Producto',
             cancelButtonText: 'Vaciar Carrito',
             confirmButtonColor: '#25D366',
+            denyButtonColor: '#BE185D',
             cancelButtonColor: '#ff4b2b',
             reverseButtons: true,
             background: '#fff', color: '#064e3b', width: '95%',
             customClass: {
                 popup: 'rounded-[2rem]',
-                confirmButton: 'rounded-full px-8 py-3 font-bold',
-                cancelButton: 'rounded-full px-8 py-3 font-bold'
+                confirmButton: 'rounded-full px-6 py-3 font-bold text-sm m-1',
+                denyButton: 'rounded-full px-6 py-3 font-bold text-sm m-1',
+                cancelButton: 'rounded-full px-6 py-3 font-bold text-sm m-1'
             }
         }).then(r => {
-            if (r.isConfirmed && this.items.length > 0) this.sendWhatsApp();
+            // Guardar analíticas del carrito al cerrar el popup (sin bloquear navegación)
+            this.saveCartStateToAPI();
+
+            if (r.isConfirmed && this.items.length > 0) {
+                this.sendWhatsApp();
+            } else if (r.isDenied || (r.isConfirmed && this.items.length === 0)) {
+                // Ir a la zona de ventas (Joyas)
+                if (window.location.pathname.includes('joyas')) {
+                    const productosSeccion = document.getElementById('productos');
+                    if (productosSeccion) {
+                        productosSeccion.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    const configScript = document.querySelector('script[src*="js/config.js"]');
+                    const isSubdir = configScript && configScript.getAttribute('src').startsWith('../');
+                    window.location.href = (isSubdir ? '../' : '') + 'joyas/index.html#productos';
+                }
+            }
             if (r.dismiss === Swal.DismissReason.cancel) this.clear();
         });
+    },
+
+    updatePreview() {
+        if (window.Swal && Swal.isVisible()) {
+            Swal.update({
+                html: this.renderCartHtml(),
+                showCancelButton: this.items.length > 0,
+                showDenyButton: this.items.length > 0,
+                confirmButtonText: this.items.length > 0 ? 'Enviar por WhatsApp' : 'Ir a la Tienda'
+            });
+        }
     },
 
     sendWhatsApp() {
@@ -138,11 +209,58 @@ const SB_Cart = {
         window.open(`https://wa.me/5492233453279?text=${encodeURIComponent(msg)}`, '_blank');
     },
 
+    changeQty(code, delta) {
+        const item = this.items.find(i => i.code === code);
+        if (item) {
+            item.qty += delta;
+            if (item.qty <= 0) {
+                this.items = this.items.filter(i => i.code !== code);
+            }
+            this.persist();
+            this.updateUI();
+            this.updatePreview();
+        }
+    },
+
+    removeItem(code) {
+        this.items = this.items.filter(i => i.code !== code);
+        this.persist();
+        this.updateUI();
+        this.updatePreview();
+    },
+
     clear() {
         this.items = [];
         this.persist();
         this.updateUI();
         if (window.Swal) Swal.fire('¡Carrito Vacío!', '', 'info');
+    },
+
+    saveCartStateToAPI() {
+        if (this.items.length === 0) return;
+        
+        let total = 0;
+        this.items.forEach(i => total += i.price * i.qty);
+
+        // Usamos una URL absoluta opcionalmente si es localhost, sino asume que la API de Vercel existe
+        const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3000/api/save-cart' // Por si usan vercel dev
+            : '/api/save-cart';
+
+        try {
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                keepalive: true, // Vital para que no se cancele al hacer window.location.href
+                body: JSON.stringify({
+                    items: this.items,
+                    total: total,
+                    origin: window.location.href
+                })
+            }).catch(e => console.log('[CART_API] Modo offline o API local no disponible.'));
+        } catch (e) {
+            console.error('[CART_API] Error enviando analytics del carrito:', e);
+        }
     }
 };
 
