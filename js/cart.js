@@ -88,6 +88,14 @@ const SB_Cart = {
         this.persist();
         this.updateUI();
         
+        // Registrar telemetría
+        this.logEvent('add_item', {
+            code: product.code,
+            name: product.name,
+            price: product.price,
+            qty: 1
+        });
+        
         if (window.Swal) {
             Swal.fire({
                 toast: true, position: 'top-end', icon: 'success',
@@ -210,6 +218,8 @@ const SB_Cart = {
     },
 
     sendWhatsApp() {
+        // Registrar telemetría de compra
+        this.logEvent('checkout_whatsapp');
         let msg = `Hola Mercedes! Quisiera realizar el siguiente pedido por la web:\n\n`;
         let total = 0;
         this.items.forEach(i => {
@@ -224,6 +234,14 @@ const SB_Cart = {
     changeQty(code, delta) {
         const item = this.items.find(i => i.code === code);
         if (item) {
+            // Registrar telemetría de cantidad modificada
+            this.logEvent(delta > 0 ? 'increase_qty' : 'decrease_qty', {
+                code: item.code,
+                name: item.name,
+                price: item.price,
+                qty: Math.abs(delta)
+            });
+
             item.qty += delta;
             if (item.qty <= 0) {
                 this.items = this.items.filter(i => i.code !== code);
@@ -235,6 +253,16 @@ const SB_Cart = {
     },
 
     removeItem(code) {
+        const item = this.items.find(i => i.code === code);
+        if (item) {
+            // Registrar telemetría de eliminación
+            this.logEvent('remove_item', {
+                code: item.code,
+                name: item.name,
+                price: item.price,
+                qty: item.qty
+            });
+        }
         this.items = this.items.filter(i => i.code !== code);
         this.persist();
         this.updateUI();
@@ -242,6 +270,8 @@ const SB_Cart = {
     },
 
     clear() {
+        // Registrar telemetría de vaciado de carrito
+        this.logEvent('clear_cart');
         this.items = [];
         this.persist();
         this.updateUI();
@@ -302,6 +332,34 @@ const SB_Cart = {
             console.error('[CART_API] Error de fetch:', err);
             this.lastSavedJson = null;
         });
+    },
+
+    logEvent(eventType, item = null) {
+        const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3000/api/log-event' 
+            : '/api/log-event';
+
+        const payload = {
+            clientId: this.getClientId(),
+            eventType: eventType,
+            productCode: item ? item.code : null,
+            productName: item ? item.name : null,
+            price: item ? item.price : null,
+            qty: item ? item.qty : null,
+            origin: window.location.href
+        };
+
+        if (navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+            navigator.sendBeacon(apiUrl, blob);
+        } else {
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                keepalive: true
+            }).catch(err => console.error('[TELEMETRY_ERROR]', err));
+        }
     }
 };
 
