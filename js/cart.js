@@ -11,6 +11,7 @@ const SB_Cart = {
     init() {
         const saved = localStorage.getItem(this.KEY);
         this.items = saved ? JSON.parse(saved) : [];
+        this.lastSavedJson = JSON.stringify(this.items); // Registrar estado inicial para evitar duplicados
         this.bindEvents();
         this.updateUI();
         // Re-sincronizar después de que ui-sync.js haya terminado
@@ -257,6 +258,17 @@ const SB_Cart = {
     },
 
     saveCartStateToAPI() {
+        if (this.saveCartTimer) {
+            clearTimeout(this.saveCartTimer);
+            this.saveCartTimer = null;
+        }
+
+        const currentJson = JSON.stringify(this.items);
+        if (this.lastSavedJson === currentJson) {
+            console.log('[CART_API] Sin cambios en el carrito. Omitiendo.');
+            return;
+        }
+
         let total = 0;
         this.items.forEach(i => total += i.price * i.qty);
 
@@ -271,6 +283,8 @@ const SB_Cart = {
             origin: window.location.href
         };
 
+        this.lastSavedJson = currentJson; // Actualizar de forma optimista
+
         fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -281,10 +295,12 @@ const SB_Cart = {
         .then(data => {
             if (data.error) {
                 console.error('[CART_API] Error de Drive:', data.error);
+                this.lastSavedJson = null; // Reintentar en el próximo cambio si falla
             }
         })
         .catch(err => {
             console.error('[CART_API] Error de fetch:', err);
+            this.lastSavedJson = null;
         });
     }
 };
