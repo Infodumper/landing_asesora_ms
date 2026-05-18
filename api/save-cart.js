@@ -58,7 +58,10 @@ module.exports = async (req, res) => {
                 console.log('[CART_SAVED] Successfully appended to sheet.');
             } catch (err) {
                 console.error('[SHEETS_ERROR_CART]', err.message);
+                return res.status(500).json({ error: 'Error de Drive: ' + err.message });
             }
+        } else {
+            console.warn('[CART_SAVE] No se encontró GOOGLE_SERVICE_ACCOUNT_JSON.');
         }
 
         return res.status(200).json({ status: 'success' });

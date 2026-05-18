@@ -251,25 +251,32 @@ const SB_Cart = {
         let total = 0;
         this.items.forEach(i => total += i.price * i.qty);
 
-        // Usamos una URL absoluta opcionalmente si es localhost, sino asume que la API de Vercel existe
         const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-            ? 'http://localhost:3000/api/save-cart' // Por si usan vercel dev
+            ? 'http://localhost:3000/api/save-cart' 
             : '/api/save-cart';
 
-        try {
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                keepalive: true, // Vital para que no se cancele al hacer window.location.href
-                body: JSON.stringify({
-                    items: this.items,
-                    total: total,
-                    origin: window.location.href
-                })
-            }).catch(e => console.log('[CART_API] Modo offline o API local no disponible.'));
-        } catch (e) {
-            console.error('[CART_API] Error enviando analytics del carrito:', e);
-        }
+        const payload = {
+            items: this.items,
+            total: total,
+            origin: window.location.href
+        };
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                console.error('[CART_API] Error de Drive:', data.error);
+                alert('🚨 ERROR DRIVE: ' + data.error);
+            }
+        })
+        .catch(err => {
+            console.error('[CART_API] Error de fetch:', err);
+        });
     }
 };
 
