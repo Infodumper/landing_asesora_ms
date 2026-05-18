@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         return res.status(405).json({ error: 'Método no permitido' });
     }
 
-    const { items, total, origin } = req.body;
+    const { items, total, origin, clientId } = req.body;
 
     const SERVICE_ACCOUNT = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
     const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
@@ -32,6 +32,12 @@ module.exports = async (req, res) => {
     try {
         const timestamp = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
         
+        // Detección de IP y Ubicación desde cabeceras de Vercel
+        const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || 'IP Desconocida';
+        const city = req.headers['x-vercel-ip-city'] ? decodeURIComponent(req.headers['x-vercel-ip-city']) : '';
+        const country = req.headers['x-vercel-ip-country'] || '';
+        const location = city ? `${ip} (${city}, ${country})` : ip;
+
         let details = items.map(i => `${i.qty}x ${i.name} (${i.code}) [$${(i.price * i.qty).toLocaleString('es-AR')}]`).join('\n');
         
         if (items.length === 0) {
@@ -49,10 +55,18 @@ module.exports = async (req, res) => {
 
                 await sheets.spreadsheets.values.append({
                     spreadsheetId: SPREADSHEET_ID,
-                    range: 'A:E',
+                    range: 'A:G',
                     valueInputOption: 'USER_ENTERED',
                     requestBody: {
-                        values: [[timestamp, items.length, `$ ${total.toLocaleString('es-AR')}`, details, origin]],
+                        values: [[
+                            timestamp, 
+                            clientId || 'CLI-DESCONOCIDO', 
+                            location, 
+                            items.length, 
+                            `$ ${total.toLocaleString('es-AR')}`, 
+                            details, 
+                            origin
+                        ]],
                     },
                 });
                 console.log('[CART_SAVED] Successfully appended to sheet.');

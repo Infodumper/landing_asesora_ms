@@ -247,6 +247,15 @@ const SB_Cart = {
         if (window.Swal) Swal.fire('¡Carrito Vacío!', '', 'info');
     },
 
+    getClientId() {
+        let cid = localStorage.getItem('sb_cart_client_id');
+        if (!cid) {
+            cid = 'CLI-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+            localStorage.setItem('sb_cart_client_id', cid);
+        }
+        return cid;
+    },
+
     saveCartStateToAPI() {
         let total = 0;
         this.items.forEach(i => total += i.price * i.qty);
@@ -256,6 +265,7 @@ const SB_Cart = {
             : '/api/save-cart';
 
         const payload = {
+            clientId: this.getClientId(),
             items: this.items,
             total: total,
             origin: window.location.href
@@ -271,7 +281,6 @@ const SB_Cart = {
         .then(data => {
             if (data.error) {
                 console.error('[CART_API] Error de Drive:', data.error);
-                alert('🚨 ERROR DRIVE: ' + data.error);
             }
         })
         .catch(err => {
