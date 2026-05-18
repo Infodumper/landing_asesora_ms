@@ -38,6 +38,8 @@ module.exports = async (req, res) => {
         const country = req.headers['x-vercel-ip-country'] || '';
         const location = city ? `${ip} (${city}, ${country})` : ip;
 
+        const totalUnits = items.reduce((sum, item) => sum + (item.qty || 0), 0);
+
         let details = items.map(i => `${i.qty}x ${i.name} (${i.code}) [$${(i.price * i.qty).toLocaleString('es-AR')}]`).join('\n');
         
         if (items.length === 0) {
@@ -62,7 +64,7 @@ module.exports = async (req, res) => {
                             timestamp, 
                             clientId || 'CLI-DESCONOCIDO', 
                             location, 
-                            items.length, 
+                            totalUnits, 
                             `$ ${total.toLocaleString('es-AR')}`, 
                             details, 
                             origin
