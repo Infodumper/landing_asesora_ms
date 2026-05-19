@@ -12,7 +12,7 @@
 |:---|:---|
 | **Nombre comercial** | MS Bellass |
 | **Titular** | Mercedes Saucedo |
-| **Dominio** | mercedessaucedo.com.ar |
+| **Dominio** | https://ms-bellass.vercel.app/ |
 | **Repositorio** | github.com/Infodumper/landing_asesora_ms |
 | **Hosting** | Vercel (deploy automático desde `main`) |
 | **Localización** | Mar del Plata, Argentina |
@@ -32,12 +32,12 @@
 │  ├── joyas/                                 │
 │  ├── talleres-experiencias/                 │
 │  ├── productos-belleza/                     │
-│  └── login.html (placeholder)              │
+│  └── login.html (placeholder)               │
 ├─────────────────────────────────────────────┤
 │  CAPA 2 — API Serverless (Vercel Functions) │
 │  └── api/get-catalogs.js                    │
 ├─────────────────────────────────────────────┤
-│  CAPA 3 — Integración Externa              │
+│  CAPA 3 — Integración Externa               │
 │  └── Google Drive API (Service Account)     │
 │      Carpeta: catálogos PDF + imágenes      │
 └─────────────────────────────────────────────┘

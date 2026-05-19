@@ -271,7 +271,7 @@ const SB_Cart = {
 
     clear() {
         // Registrar telemetría de vaciado de carrito
-        this.logEvent('clear_cart');
+        this.logEvent('clear_cart', { code: 'N/A', name: 'Carrito vaciado' });
         this.items = [];
         this.persist();
         this.updateUI();

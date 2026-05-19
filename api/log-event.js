@@ -120,7 +120,7 @@ module.exports = async (req, res) => {
                             location,
                             eventType,
                             productCode || 'N/A',
-                            productName || 'N/A',
+                            productName || (eventType === 'clear_cart' ? 'Carrito vaciado' : 'N/A'),
                             qty !== undefined && qty !== null ? qty : 'N/A',
                             price !== undefined && price !== null ? `$ ${price.toLocaleString('es-AR')}` : 'N/A',
                             origin || 'N/A'
