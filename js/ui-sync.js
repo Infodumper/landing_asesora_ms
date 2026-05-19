@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * Carga el archivo .md, lo parsea y aplica los textos a los elementos data-content.
+ * Carga los archivos .md por bloques, los parsea y aplica los textos a los elementos data-content.
  */
 async function syncMarkdownContent() {
     try {
@@ -45,15 +45,43 @@ async function syncMarkdownContent() {
         // El .src devuelve la URL absoluta (file:///... o https://...)
         const scriptUrl = scriptEl.src;
         const rootPath = scriptUrl.substring(0, scriptUrl.indexOf('js/ui-sync.js'));
-        const contentPath = `${rootPath}assets/content.md`;
 
-        console.log(`[UI-SYNC] Intentando cargar contenidos desde: ${contentPath}`);
+        // Bloques de contenido correspondientes a las carpetas en assets/img
+        const blocks = [
+            'asesoria_imagen.md',
+            'logos.md',
+            'maquillaje.md',
+            'menu_icons.md',
+            'personal.md',
+            'portada.md',
+            'productos.md',
+            'social.md',
+            'source.md',
+            'talleres.md'
+        ];
 
-        const response = await fetch(contentPath);
-        if (!response.ok) throw new Error(`HTTP ${response.status} - Fallo al cargar el archivo`);
+        console.log(`[UI-SYNC] Cargando bloques de contenido en paralelo desde: ${rootPath}assets/bloques_contenido/`);
+
+        const contentMap = {};
         
-        const text = await response.text();
-        const contentMap = parseMarkdownContent(text);
+        // Carga y parseo en paralelo de todos los bloques
+        const fetchPromises = blocks.map(async (fileName) => {
+            const contentPath = `${rootPath}assets/bloques_contenido/${fileName}`;
+            try {
+                const response = await fetch(contentPath);
+                if (response.ok) {
+                    const text = await response.text();
+                    const parsed = parseMarkdownContent(text);
+                    Object.assign(contentMap, parsed);
+                } else {
+                    console.warn(`[UI-SYNC] Bloque no cargado: ${fileName} (HTTP ${response.status})`);
+                }
+            } catch (e) {
+                console.error(`[UI-SYNC] Error cargando bloque ${fileName}:`, e);
+            }
+        });
+
+        await Promise.all(fetchPromises);
 
         console.log('[UI-SYNC] Contenidos procesados:', Object.keys(contentMap));
 

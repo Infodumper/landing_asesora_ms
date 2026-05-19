@@ -23,12 +23,11 @@ instalar.php.locked
 instalar.php*
 *.locked
 
-# Bóvedas de Obsidian (Documentación Local)
-obsidian_gestion/
-obsidian_gestion-sb/
-
 # Catálogos Pesados (Drive)
 assets/docs/
 
 # Guías de configuración
 leads_google_drive.md
+
+# Panel de Control Local (Herramienta Exclusiva de Desarrollo Local)
+editor-local/
