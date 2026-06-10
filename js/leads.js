@@ -7,7 +7,7 @@ const LeadManager = {
     config: {
         delay: 5000, // 5 segundos
         storageKey: 'ms_lead_captured',
-        whatsappBase: 'https://wa.me/5492233453279',
+        whatsappBase: 'https://api.whatsapp.com/send?phone=5492233453279',
     },
 
     init() {
@@ -110,7 +110,7 @@ const LeadManager = {
             let waMsg = `Hola Merce! Mi nombre es ${name}. Mi contacto es ${contact}.`;
             if (message) waMsg += `\n\nMensaje: ${message}`;
             
-            const link = `${this.config.whatsappBase}?text=${encodeURIComponent(waMsg)}`;
+            const link = `${this.config.whatsappBase}&text=${encodeURIComponent(waMsg)}`;
             
             this.onSuccess(false, link);
         }

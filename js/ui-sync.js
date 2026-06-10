@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         });
 
-        const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+        const waLinks = document.querySelectorAll('a[href*="api.whatsapp.com/send"]');
         if (CONFIG.whatsappNumber && waLinks.length > 0) {
             waLinks.forEach(el => {
                 const currentHref = el.getAttribute('href');
-                const newHref = currentHref.replace(/wa\.me\/\d+/, `wa.me/${CONFIG.whatsappNumber}`);
+                const newHref = currentHref.replace(/phone=\d+/, `phone=${CONFIG.whatsappNumber}`);
                 el.setAttribute('href', newHref);
             });
         }

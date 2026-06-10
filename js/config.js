@@ -7,7 +7,7 @@ const CONFIG = {
     consultantName: "Mercedes Saucedo",
     consultantTitle: "Asesora de Imagen",
     whatsappNumber: "5492233453279",
-    whatsappLink: "https://wa.me/5492233453279",
+    whatsappLink: "https://api.whatsapp.com/send?phone=5492233453279",
     instagram: "https://www.instagram.com/ms.bellass/",
     facebook: "#",
     tiktok: "https://www.tiktok.com/@mercedessaucedo73",

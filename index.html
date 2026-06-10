@@ -774,7 +774,7 @@
     </footer>
 
     <!-- Botón Flotante WhatsApp -->
-    <a href="https://wa.me/5492233453279" target="_blank" rel="noopener noreferrer"
+    <a href="https://api.whatsapp.com/send?phone=5492233453279" target="_blank" rel="noopener noreferrer"
         class="fixed bottom-24 right-6 z-[90] group transition-all duration-500 hover:scale-110 active:scale-95"
         aria-label="Contactar por WhatsApp">
         <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-colors">
@@ -817,9 +817,9 @@
     ══════════════════════════════════════════ -->
     <div id="lead-popup" 
          class="fixed bottom-4 md:bottom-6 left-4 md:left-6 z-[95] w-[calc(100%-2rem)] md:w-[320px] bg-white rounded-[1.5rem] shadow-2xl border border-gray-100 p-6 transform translate-y-[150%] opacity-0 transition-all duration-700 ease-out">
-        <button onclick="LeadManager.closePopup(true)" 
-                class="absolute top-4 right-4 text-gray-400 hover:text-brandText transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button type="button" onclick="LeadManager.closePopup(true)" 
+                class="absolute top-2 right-2 z-10 p-2 text-gray-400 hover:text-brandText transition-colors" aria-label="Cerrar">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
@@ -835,7 +835,7 @@
                 Dejanos tus datos y recibí mi <strong>Guía de Imagen Personal</strong> totalmente gratis.
             </p>
             
-            <form onsubmit="LeadManager.handleSubmit(event)" class="w-full space-y-3">
+            <form onsubmit="event.preventDefault(); LeadManager.handleSubmit(event)" class="w-full space-y-3">
                 <input type="text" id="lead-name" required placeholder="Tu nombre" 
                        class="w-full bg-gray-50 border border-gray-100 px-4 py-3 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-medium">
                 <input type="tel" id="lead-contact" required placeholder="Tu WhatsApp (Ej: 2231234567)" 

@@ -228,7 +228,7 @@ const SB_Cart = {
             msg += `- *${i.qty}x* ${i.name} (Cód: ${i.code}) — $${sub.toLocaleString('es-AR')}\n`;
         });
         msg += `\nTOTAL: $${total.toLocaleString('es-AR')}\n\n¿Me podés confirmar disponibilidad? ¡Gracias!`;
-        window.open(`https://wa.me/5492233453279?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`https://api.whatsapp.com/send?phone=5492233453279&text=${encodeURIComponent(msg)}`, '_blank');
     },
 
     changeQty(code, delta) {
