@@ -3,7 +3,7 @@
  * Implementación básica y no invasiva para captación de clientes.
  */
 
-const LeadManager = {
+window.LeadManager = {
     config: {
         delay: 5000, // 5 segundos
         storageKey: 'ms_lead_captured',
