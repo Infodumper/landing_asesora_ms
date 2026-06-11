@@ -90,15 +90,17 @@ function initRibbon() {
     const set = document.getElementById('ribbon-set');
     if (!ribbon || !track || !set) return;
 
-    track.appendChild(set.cloneNode(true));
-    track.appendChild(set.cloneNode(true));
+    if (window.innerWidth < 768) {
+        track.appendChild(set.cloneNode(true));
+        track.appendChild(set.cloneNode(true));
 
-    ribbon.addEventListener('scroll', () => {
-        const gap = parseInt(getComputedStyle(track).gap) || 24;
-        const setWidth = set.offsetWidth + gap;
-        if (ribbon.scrollLeft >= setWidth * 2) ribbon.scrollLeft -= setWidth;
-        if (ribbon.scrollLeft <= 0) ribbon.scrollLeft += setWidth;
-    }, { passive: true });
+        ribbon.addEventListener('scroll', () => {
+            const gap = parseInt(getComputedStyle(track).gap) || 24;
+            const setWidth = set.offsetWidth + gap;
+            if (ribbon.scrollLeft >= setWidth * 2) ribbon.scrollLeft -= setWidth;
+            if (ribbon.scrollLeft <= 0) ribbon.scrollLeft += setWidth;
+        }, { passive: true });
+    }
 }
 
 // ─── Menú Móvil ───────────────────────────────────────────
